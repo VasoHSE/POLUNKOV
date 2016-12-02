@@ -6,15 +6,9 @@ using System.Threading.Tasks;
 using System.Drawing;
 namespace Main_Logic
 {
-    class GetUserGraphUnfoInfo
+ public   class GetUserGraphUnfoInfo
     {
-        public List<int[]> Go()
-        {
-           
-            var imageArray = ImageConvert("../../image.png");
-            var kek = FindXY(imageArray);
-            return kek;
-        }
+        
 
 
         public static int[][] ImageConvert(string path) //Convert bitmap to double array with 1 and 0
@@ -55,9 +49,9 @@ namespace Main_Logic
             }            
         }
 
-        public static List<int[]> FindXY(int[][] imgArray) //arrays of Xi & Yi
+        public static List<int[]> FindXY(string path) //arrays of Xi & Yi
         {
-            
+            var imgArray = ImageConvert(path);
             int xn = 0;//last x
             var xar = imgArray.Length;
             var yar = imgArray[1].Length;
@@ -118,8 +112,9 @@ namespace Main_Logic
             return kek;
 
         }
-        public static double[] KoefArray(List<int[]> plot) //Array of Ki
+        public static double[] KoefArray(string path) //Array of Ki
         {
+            var plot = FindXY(path);
             int[] X = plot[0];
             int[] Y = plot[1];
             double[] K = new double[Pointamount - 1];
