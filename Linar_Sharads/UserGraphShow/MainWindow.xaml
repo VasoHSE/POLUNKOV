@@ -8,25 +8,36 @@
         xmlns:DV="clr-namespace:System.Windows.Controls.DataVisualization;assembly=System.Windows.Controls.DataVisualization.Toolkit"
        
         mc:Ignorable="d"
-        Title="MainWindow" Height="350" Width="525">
-    <Grid>
+        ResizeMode="NoResize"
+        Title="MainWindow" Height="446" Width="726" >
+    <Grid Margin="0,0,-6,0">
         <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="392*"/>
-            <ColumnDefinition Width="94*"/>
-            <ColumnDefinition Width="31*"/>
+            <ColumnDefinition Width="583*"/>
+            <ColumnDefinition Width="92*"/>
+            <ColumnDefinition Width="51*"/>
         </Grid.ColumnDefinitions>
-        <DVC:Chart Name="Chart"
-           Background="#463F3F" Margin="0,0,-18,-26" Grid.ColumnSpan="3">
+
+
+
+        <DVC:Chart Name="Chart" Background="#463F3F" Grid.ColumnSpan="3">
             <DVC:Chart.Series>
-                <DVC:LineSeries Title=" Your Graph" IndependentValueBinding="{Binding Path=Key}" DependentValueBinding="{Binding Path=Value}" Margin="0,0,2,3">
-                </DVC:LineSeries>
+                <DVC:LineSeries Title=" Your Graph" IndependentValueBinding="{Binding Path=Key}"  DependentValueBinding="{Binding Path=Value}" />
             </DVC:Chart.Series>
+            
+            
             <DVC:Chart.PlotAreaStyle>
                 <Style TargetType="Grid">
-                    <Setter Property="Background" Value="Transparent" />
+                    <Setter Property="Background" Value="#463F3F" />
                 </Style>
             </DVC:Chart.PlotAreaStyle>
+            
+            <DVC:Chart.Axes>
+                <DVC:LinearAxis Orientation="Y" Minimum="-302" Maximum="0"/>
+                <DVC:LinearAxis Orientation="X" Maximum="509" Minimum="0"/>
+                <DVC:LinearAxis Visibility="Hidden"/>
+            </DVC:Chart.Axes>
+            
         </DVC:Chart>
-        <Button x:Name="button" Content="Button" HorizontalAlignment="Left" Margin="8,10,0,0" VerticalAlignment="Top" Width="75" Grid.Column="1" Height="22" Click="button_Click"/>
+        <Button x:Name="button" Content="Show" HorizontalAlignment="Left" Margin="8,10,0,0" VerticalAlignment="Top" Width="75" Grid.Column="1" Height="22" Click="button_Click"/>
     </Grid>
 </Window>

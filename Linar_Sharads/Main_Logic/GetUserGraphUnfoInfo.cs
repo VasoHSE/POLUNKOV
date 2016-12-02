@@ -8,26 +8,21 @@ namespace Main_Logic
 {
  public   class GetUserGraphUnfoInfo
     {
-        
-
-
         public static int[][] ImageConvert(string path) //Convert bitmap to double array with 1 and 0
         {
             var bitmap = new Bitmap(path);
-
             var imgArray = new int[bitmap.Width][];
             for (int i = 0; i < imgArray.Length; i++)
             {
                 imgArray[i] = new int[bitmap.Height];
             }
-
-            var white = Color.White.ToArgb();
+            var black = Color.Black.ToArgb();
             for (var i = 0; i < bitmap.Width; ++i)
             {
                 for (var j = 0; j < bitmap.Height; ++j)
                 {
                     var pixelCol = bitmap.GetPixel(i, j);
-                    if (pixelCol.ToArgb() == white)
+                    if (pixelCol.ToArgb() == black)
                     {
                         imgArray[i][j] = 0;
                     }
@@ -43,9 +38,10 @@ namespace Main_Logic
         //lets say the step is 1/40 length     
 
         public static int Pointamount
-        {            get
+        {
+            get
             {
-                return 40;
+                return 25;
             }            
         }
 
@@ -64,9 +60,7 @@ namespace Main_Logic
                         xn = i;
                         break;
                     }
-
                 }
-
             }
             int x1 = 0;//first x
             for (int i = xar - 1; i > 0; i--)
@@ -79,10 +73,7 @@ namespace Main_Logic
                         break;
                     }
                 }
-            }
-
-            
-           
+            }         
             var X = new int[Pointamount];
             var Y = new int[Pointamount];
             var dx = (int)((xn - x1) / (Pointamount - 1));//step
@@ -91,7 +82,6 @@ namespace Main_Logic
             int j1 = 0;
             do// find Xi Yi arrays
             {
-
                 if (imgArray[i1][j1] == 1)
                 {
                     X[a] = i1;
@@ -102,15 +92,10 @@ namespace Main_Logic
                 }
                 j1++;
             } while (i1 < x1 + (Pointamount - 1) * dx + 1);
-
-
-
-
             var kek = new List<int[]>();
             kek.Add(X);
             kek.Add(Y);
             return kek;
-
         }
         public static double[] KoefArray(string path) //Array of Ki
         {

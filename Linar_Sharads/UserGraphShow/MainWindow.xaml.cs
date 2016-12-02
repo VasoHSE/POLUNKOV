@@ -31,21 +31,44 @@ namespace UserGraphShow
         {
 
            // var repo = new GetUserGraphUnfoInfo();
-            var b = GetUserGraphUnfoInfo.FindXY("../../../Main_Logic/image.png");
+            var b = GetUserGraphUnfoInfo.FindXY("../../../Main_Logic/image.jpeg");
             var X = b[0];
             var Y = b[1];
             LineSeries ls = new LineSeries();
             ls.IndependentValueBinding = new Binding("Key");
             ls.DependentValueBinding = new Binding("Value");
-            var a = new KeyValuePair<int, int>[40];
-            for (int i = 0; i < 40; i++)
+            var a = new KeyValuePair<int, int>[GetUserGraphUnfoInfo.Pointamount];
+            for (int i = 0; i < GetUserGraphUnfoInfo.Pointamount; i++)
             {
                 a[i] = new KeyValuePair<int, int>(X[i], Y[i]);
             }
             ls.ItemsSource = a;
-
             Chart.Series.Clear();
+           
             Chart.Series.Add(ls);
+          
+            //var c = GetUserGraphUnfoInfo.KoefArray("../../../Main_Logic/image.jpeg");
+            //int fgfg = 3;
         }
+
+        //private void button1_Click(object sender, RoutedEventArgs e)
+        //{
+        //    var k = new int[] { 1, 2 };
+        //    var X= new int[] { 1,2,3};
+        //    var Y = new int[] { X[0], (X[1] - X[0]) * k[0], (X[2]-X[1])*k[1]+(X[1]-X[0])*k[0] };
+        //    LineSeries ls = new LineSeries();
+        //    ls.IndependentValueBinding = new Binding("Key");
+        //    ls.DependentValueBinding = new Binding("Value");
+        //    var a = new KeyValuePair<int, int>[GetUserGraphUnfoInfo.Pointamount];
+        //    for (int i = 0; i < 3; i++)
+        //    {
+        //        a[i] = new KeyValuePair<int, int>(X[i], Y[i]);
+        //    }
+        //    ls.ItemsSource = a;
+        //    Chart.Series.Clear();
+        //    Chart.Series.Add(ls);
+
+
+        //}
     }
 }
