@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 using System.Drawing;
 namespace Main_Logic
 {
- public   class GetUserGraphUnfoInfo
+ public class GetUserGraphUnfoInfo
     {
         public static int[][] ImageConvert(string path) //Convert bitmap to double array with 1 and 0
         {
