@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Drawing;
 using System.Linq;
@@ -13,7 +14,15 @@ namespace Main_Logic
     {
         static void Main(string[] args)
         {
+            //Repository repository = new Repository();
+            
+            //var sfs = repository.GetKoefs(repository.MakeQuery(repository.GetApiString()));
+           
 
+            //Console.ReadKey();
         }
+
+
+        
     }
 }
