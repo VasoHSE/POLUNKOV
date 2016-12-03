@@ -9,18 +9,11 @@ using Newtonsoft.Json;
 
 namespace Main_Logic
 {
-    internal class Program
+    class Program
     {
-        private static void Main()
+        static void Main(string[] args)
         {
-            //Test
-            using (var context = new Context())
-            {
-                context.Database.Delete();
-                context.Database.CreateIfNotExists();
 
-                context.SaveChanges();
-            }
         }
     }
 }
