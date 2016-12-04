@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Collections;
 using System.Collections.Generic;
 using System.Drawing;
 using System.Linq;
@@ -10,19 +9,18 @@ using Newtonsoft.Json;
 
 namespace Main_Logic
 {
-    class Program
+    internal class Program
     {
-        static void Main(string[] args)
+        private static void Main()
         {
-            //Repository repository = new Repository();
-            
-            //var sfs = repository.GetKoefs(repository.MakeQuery(repository.GetApiString()));
-           
+            //Test
+            using (var context = new Context())
+            {
+                context.Database.Delete();
+                context.Database.CreateIfNotExists();
 
-            //Console.ReadKey();
+                context.SaveChanges();
+            }
         }
-
-
-        
     }
 }
