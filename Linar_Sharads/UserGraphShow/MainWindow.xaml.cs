@@ -1,17 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows;
-using System.Windows.Controls;
 using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
-using System.Windows.Shapes;
 using Main_Logic;
 using System.Windows.Controls.DataVisualization.Charting;
 
@@ -20,7 +10,7 @@ namespace UserGraphShow
     /// <summary>
     /// Interaction logic for MainWindow.xaml
     /// </summary>
-    public partial class MainWindow : Window
+    public partial class MainWindow
     {
         public MainWindow()
         {
@@ -29,26 +19,33 @@ namespace UserGraphShow
 
         private void button_Click(object sender, RoutedEventArgs e)
         {
-
-           // var repo = new GetUserGraphUnfoInfo();
-            var b = GetUserGraphUnfoInfo.FindXY("../../../Main_Logic/image.jpeg");
-            var X = b[0];
-            var Y = b[1];
-            LineSeries ls = new LineSeries();
-            ls.IndependentValueBinding = new Binding("Key");
-            ls.DependentValueBinding = new Binding("Value");
-            var a = new KeyValuePair<int, int>[GetUserGraphUnfoInfo.Pointamount];
-            for (int i = 0; i < GetUserGraphUnfoInfo.Pointamount; i++)
+            try
             {
-                a[i] = new KeyValuePair<int, int>(X[i], Y[i]);
+                // var repo = new GetUserGraphUnfoInfo();
+                var b = GetUserGraphUnfoInfo.FindXY("../../../Main_Logic/image.jpeg");
+                var x = b[0];
+                var y = b[1];
+                var ls = new LineSeries
+                {
+                    IndependentValueBinding = new Binding("Key"),
+                    DependentValueBinding = new Binding("Value")
+                };
+                var a = new KeyValuePair<int, int>[GetUserGraphUnfoInfo.Pointamount];
+                for (var i = 0; i < GetUserGraphUnfoInfo.Pointamount; i++)
+                    a[i] = new KeyValuePair<int, int>(x[i], y[i]);
+
+                ls.ItemsSource = a;
+                Chart.Series.Clear();
+                Chart.Series.Add(ls);
+
+                //var c = GetUserGraphUnfoInfo.KoefArray("../../../Main_Logic/image.jpeg");
+                //int fgfg = 3;
             }
-            ls.ItemsSource = a;
-            Chart.Series.Clear();
-           
-            Chart.Series.Add(ls);
-          
-            //var c = GetUserGraphUnfoInfo.KoefArray("../../../Main_Logic/image.jpeg");
-            //int fgfg = 3;
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message, ":(", MessageBoxButton.OKCancel, MessageBoxImage.Error);
+                Close();
+            }
         }
 
         //private void button1_Click(object sender, RoutedEventArgs e)
