@@ -61,11 +61,10 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Api\Data.cs" />
-    <Compile Include="Api\Dataset.cs" />
-    <Compile Include="Api\InnerData.cs" />
-    <Compile Include="Api\Request.cs" />
-    <Compile Include="Approximation.cs" />
+    <Compile Include="DTO\Data.cs" />
+    <Compile Include="DTO\Dataset.cs" />
+    <Compile Include="DTO\InnerData.cs" />
+    <Compile Include="DTO\Request.cs" />
     <Compile Include="Context.cs" />
     <Compile Include="DBO\Area.cs" />
     <Compile Include="DBO\LineGraph.cs" />
