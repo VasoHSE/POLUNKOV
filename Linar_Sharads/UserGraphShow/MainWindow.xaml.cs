@@ -44,7 +44,7 @@ namespace UserGraphShow
             catch (Exception ex)
             {
                 MessageBox.Show(ex.Message, ":(", MessageBoxButton.OKCancel, MessageBoxImage.Error);
-                Close();
+                
             }
         }
 

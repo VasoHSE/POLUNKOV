@@ -1,25 +1,30 @@
 ﻿using System;
+using System.Collections.Generic;
+using System.IO;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
 using System.Windows;
+using System.Windows.Controls;
+using System.Windows.Data;
+using System.Windows.Documents;
 using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
-using System.IO;
 
-namespace UserGraphDraw
-{ 
+namespace UserGraphShow
+{
     /// <summary>
-    /// Interaction logic for MainWindow.xaml
+    /// Interaction logic for Painting.xaml
     /// </summary>
-    public partial class MainWindow
+    public partial class Painting : Window
     {
-        private Point _currentPoint;
-
-        public MainWindow()
+        public Painting()
         {
             InitializeComponent();
         }
-
+        private Point _currentPoint;
         private void Canvas_MouseDown_1(object sender, MouseButtonEventArgs e)
         {
             if (e.ButtonState == MouseButtonState.Pressed)
@@ -49,16 +54,16 @@ namespace UserGraphDraw
             }
             catch (Exception ex)
             {
-                MessageBox.Show(ex.Message, ":(", MessageBoxButton.OKCancel, MessageBoxImage.Error);            
+                MessageBox.Show(ex.Message, ":(", MessageBoxButton.OKCancel, MessageBoxImage.Error);
             }
             var kek = new UserGraphShow.MainWindow();
-            kek.ShowDialog();          
+            kek.ShowDialog();
         }
 
         public void SaveTo(string f)
         {
             var b = VisualTreeHelper.GetDescendantBounds(paintSurface);
-            var r = new RenderTargetBitmap((int) b.Width, (int) b.Height, 96, 96,
+            var r = new RenderTargetBitmap((int)b.Width, (int)b.Height, 96, 96,
                 PixelFormats.Default);
             r.Render(paintSurface);
             var e = new JpegBitmapEncoder();

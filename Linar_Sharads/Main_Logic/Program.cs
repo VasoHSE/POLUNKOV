@@ -12,6 +12,8 @@
 
                 context.SaveChanges();
             }
+            var repo = new Repository();
+            //repo.GetKoefs();
         }
     }
 }

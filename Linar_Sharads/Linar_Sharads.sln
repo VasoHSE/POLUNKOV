@@ -7,8 +7,6 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Main_Logic", "Main_Logic\Ma
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "UserGraphShow", "UserGraphShow\UserGraphShow.csproj", "{A78E0D33-A990-4EBA-A2BD-4BE1B81D6BBA}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "UserGraphDraw", "UserGraphDraw\UserGraphDraw.csproj", "{1F02949D-672A-4D0C-BB84-F7B62E3A92EA}"
-EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -23,10 +21,6 @@ Global
 		{A78E0D33-A990-4EBA-A2BD-4BE1B81D6BBA}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{A78E0D33-A990-4EBA-A2BD-4BE1B81D6BBA}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{A78E0D33-A990-4EBA-A2BD-4BE1B81D6BBA}.Release|Any CPU.Build.0 = Release|Any CPU
-		{1F02949D-672A-4D0C-BB84-F7B62E3A92EA}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{1F02949D-672A-4D0C-BB84-F7B62E3A92EA}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{1F02949D-672A-4D0C-BB84-F7B62E3A92EA}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{1F02949D-672A-4D0C-BB84-F7B62E3A92EA}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
