@@ -4,11 +4,10 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Main_Logic.Api
+namespace Main_Logic.DTO.DTO_API
 {
-    class InnerData
+    class ResponseOnApi
     {
-        public string Date { get; set; }
-        public double Value { get; set; }
+        public Dataset[] datasets { get; set; }
     }
 }

@@ -62,14 +62,16 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="DrawByKoef.cs" />
-    <Compile Include="DTO\Data.cs" />
-    <Compile Include="DTO\Dataset.cs" />
-    <Compile Include="DTO\InnerData.cs" />
-    <Compile Include="DTO\Request.cs" />
+    <Compile Include="DTO\DTO_Data\Dataset.cs" />
+    <Compile Include="DTO\DTO_API\Dataset.cs" />
+    <Compile Include="DTO\DTO_API\ResponseOnApi.cs" />
+    <Compile Include="DTO\DTO_Data\ResponseOnData.cs" />
     <Compile Include="Context.cs" />
     <Compile Include="DBO\Area.cs" />
     <Compile Include="DBO\LineGraph.cs" />
     <Compile Include="DBO\Result.cs" />
+    <Compile Include="DTO\Models\APIResults.cs" />
+    <Compile Include="DTO\Models\DATAResult.cs" />
     <Compile Include="GetUserGraphUnfoInfo.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

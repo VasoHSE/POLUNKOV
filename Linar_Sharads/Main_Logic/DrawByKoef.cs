@@ -18,7 +18,7 @@ namespace Main_Logic
         {
            
             Repository repository = new Repository();
-            _k = repository.GetKoefs(repository.MakeQuery(repository.GetApiString()));           
+            //_k = repository.GetKoefs(repository.MakeQuery(repository.GetApiString()));           
         }
 
 

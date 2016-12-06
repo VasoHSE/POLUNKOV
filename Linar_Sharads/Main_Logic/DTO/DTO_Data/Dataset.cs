@@ -5,7 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using Newtonsoft.Json;
 
-namespace Main_Logic.Api
+namespace Main_Logic.DTO.DTO_Data
 {
     public class Dataset
     {

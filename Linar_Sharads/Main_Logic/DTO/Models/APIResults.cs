@@ -4,10 +4,10 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Main_Logic.Api
+namespace Main_Logic.DTO.Models
 {
-    class Data
+    public class APIResults
     {
-        public List<InnerData> data { get; set; }
+        public string Url { get; set; }
     }
 }
