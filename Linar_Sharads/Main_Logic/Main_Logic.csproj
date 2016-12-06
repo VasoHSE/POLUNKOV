@@ -61,6 +61,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="DrawByKoef.cs" />
     <Compile Include="DTO\Data.cs" />
     <Compile Include="DTO\Dataset.cs" />
     <Compile Include="DTO\InnerData.cs" />

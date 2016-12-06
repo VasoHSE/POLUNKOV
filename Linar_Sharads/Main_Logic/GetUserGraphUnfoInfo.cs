@@ -6,6 +6,20 @@ namespace Main_Logic
 {
     public class GetUserGraphUnfoInfo
     {
+        //lets say the step is 1/25 length    
+        public static int Pointamount => 25;
+        public  int X0 => FindXY(_path)[0][0];
+        public  double[] KfcArray => KoefArray(_path);
+        public  int StepX=> (FindXY(_path)[0][0] + FindXY(_path)[0][FindXY(_path)[0].Length - 1]) / (Pointamount - 1);
+        //private  string _path => "../../../Main_Logic/image.jpeg";
+
+
+        private string _path;
+        public GetUserGraphUnfoInfo()
+        {
+            this._path = "../../../Main_Logic/image.jpeg";
+        }
+
         public static int[][] ImageConvert(string path) //Convert bitmap to double array with 1 and 0
         {
             var bitmap = new Bitmap(path);
@@ -23,14 +37,13 @@ namespace Main_Logic
                         imgArray[i][j] = 1;
                 }
             return imgArray;
-        }
+        }      
 
-        //lets say the step is 1/40 length     
-
-        public static int Pointamount => 25;
+           
 
         public static List<int[]> FindXY(string path) //arrays of Xi & Yi
         {
+            
             var imgArray = ImageConvert(path);
             var xn = 0; //last x
             var xar = imgArray.Length;

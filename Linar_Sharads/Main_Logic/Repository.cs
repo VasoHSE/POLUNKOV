@@ -9,9 +9,9 @@ using Newtonsoft.Json;
 
 namespace Main_Logic
 {
-    internal class Repository
+    public class Repository
     {
-        public Request MakeQuery(string apiRequest)
+      public   Request MakeQuery(string apiRequest)
         {
             using (var client = new HttpClient())
             {
@@ -38,12 +38,12 @@ namespace Main_Logic
             foreach (var varpair in query.dataset.data)
             {
                 listOfValues.Add(new List<double> { t, (double)varpair[1] });
-                t++;
+                t+=0.0054;
             }
 
             var splittedList = new List<List<List<double>>>();
 
-            Split(listOfValues, (int)listOfValues.Count / 25, ref splittedList);
+            Split(listOfValues, (int)listOfValues.Count / (GetUserGraphUnfoInfo.Pointamount-1), ref splittedList);
 
             var listOfKoef = new List<double>();
 

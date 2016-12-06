@@ -55,21 +55,20 @@ namespace UserGraphShow
             catch (Exception ex)
             {
                 MessageBox.Show(ex.Message, ":(", MessageBoxButton.OKCancel, MessageBoxImage.Error);
+                
             }
-            var kek = new UserGraphShow.MainWindow();
+            var kek = new UserGraphShow.GraphOutput();
             kek.ShowDialog();
         }
 
         public void SaveTo(string f)
         {
             var b = VisualTreeHelper.GetDescendantBounds(paintSurface);
-            var r = new RenderTargetBitmap((int)b.Width, (int)b.Height, 96, 96,
-                PixelFormats.Default);
+            var r = new RenderTargetBitmap((int)b.Width, (int)b.Height, 96, 96, PixelFormats.Default);
             r.Render(paintSurface);
             var e = new JpegBitmapEncoder();
             e.Frames.Add(BitmapFrame.Create(r));
-            var s = new FileStream(f,
-                FileMode.OpenOrCreate, FileAccess.Write);
+            var s = new FileStream(f, FileMode.OpenOrCreate, FileAccess.Write);
             e.Save(s);
             s.Close();
         }

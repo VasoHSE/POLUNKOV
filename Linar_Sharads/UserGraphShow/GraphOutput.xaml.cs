@@ -10,9 +10,9 @@ namespace UserGraphShow
     /// <summary>
     /// Interaction logic for MainWindow.xaml
     /// </summary>
-    public partial class MainWindow
+    public partial class GraphOutput
     {
-        public MainWindow()
+        public GraphOutput()
         {
             InitializeComponent();
         }
@@ -38,13 +38,13 @@ namespace UserGraphShow
                 Chart.Series.Clear();
                 Chart.Series.Add(ls);
 
-                //var c = GetUserGraphUnfoInfo.KoefArray("../../../Main_Logic/image.jpeg");
-                //int fgfg = 3;
+             
             }
             catch (Exception ex)
             {
                 MessageBox.Show(ex.Message, ":(", MessageBoxButton.OKCancel, MessageBoxImage.Error);
-                
+                this.Close();
+
             }
         }
 

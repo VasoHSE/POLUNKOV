@@ -7,7 +7,7 @@ using Newtonsoft.Json;
 
 namespace Main_Logic.Api
 {
-    class Dataset
+    public class Dataset
     {
         //public int id { get; set; }
         //public string dataset_code { get; set; }

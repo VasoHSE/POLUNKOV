@@ -59,7 +59,7 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
-    <Page Include="MainWindow.xaml">
+    <Page Include="GraphOutput.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
@@ -67,16 +67,23 @@
       <DependentUpon>App.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="MainWindow.xaml.cs">
-      <DependentUpon>MainWindow.xaml</DependentUpon>
+    <Compile Include="GraphOutput.xaml.cs">
+      <DependentUpon>GraphOutput.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
+    <Page Include="KoefGraphOutput.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Painting.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="KoefGraphOutput.xaml.cs">
+      <DependentUpon>KoefGraphOutput.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Painting.xaml.cs">
       <DependentUpon>Painting.xaml</DependentUpon>
     </Compile>
