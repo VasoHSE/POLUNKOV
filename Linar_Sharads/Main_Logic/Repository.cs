@@ -22,7 +22,6 @@ namespace Main_Logic
           {
               foreach (var item in GetApisList())
               {
-                  //var listForOneUrl = new List<DATAResult>();
                   var result = client.GetStringAsync(item.Url).Result;
                   var serializedObject = JsonConvert.DeserializeObject<ResponseOnData>(result);
                   var dataResult =
@@ -34,14 +33,15 @@ namespace Main_Logic
                                   Link = item.Url,
                                   Description = serializedObject.dataset.name
                               });
-                    //listForOneUrl.AddRange(dataResult);
-                    listOfData.Add(dataResult.ToList());
+
+                    if (dataResult.Count() >= 25)
+                    {
+                        yield return dataResult.ToList();
+                    }
+                  
               }
           }
-          foreach (var item in listOfData)
-          {
-              yield return item;
-          }
+
 
         }
 
@@ -61,14 +61,12 @@ namespace Main_Logic
                         Url =
                             $"https://www.quandl.com/api/v3/datasets/{t.database_code}/{t.dataset_code}.json?api_key=14RrJdQgDvzP-AcbYa1H"
                     });
-                    apisList.AddRange(apiResults);
-
+                    foreach (var item in apiResults)
+                    {
+                        yield return item;
+                    }
                 }
                 
-            }
-            foreach (var resultse in apisList)
-            {
-                yield return resultse;
             }
         }
 
