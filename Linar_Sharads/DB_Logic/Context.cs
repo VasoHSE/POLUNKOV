@@ -10,7 +10,7 @@ namespace Main_Logic
 {
     internal class Context : DbContext
     {
-        public Context() : base("GraphDB") { }
+        public Context() : base("azuresql") { }
 
         public DbSet<Area> Areas { get; set; }
         public DbSet<LineGraph> LineGraphs { get; set; }
