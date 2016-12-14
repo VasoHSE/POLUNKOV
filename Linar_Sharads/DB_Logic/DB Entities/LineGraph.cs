@@ -1,18 +1,15 @@
-﻿using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations;
+﻿using System.ComponentModel.DataAnnotations;
 
-namespace Main_Logic.DBO
+namespace DB_Logic.Entities
 {
     internal class LineGraph
     {
         [Key]
         public int Id { get; set; }
-
-        [Required]
-        public Area Area { get; set; }
+        
         [MaxLength(100)]
         public string Name { get; set; }
-        [MaxLength(256)]
+        [MaxLength(512)]
         public string Describtion { get; set; }
         [MaxLength(256), Required]  
         public string WebQuery { get; set; }
@@ -21,9 +18,11 @@ namespace Main_Logic.DBO
         //public float StartValue { get; set; }   
         //[Required]
         //public float EndValue { get; set; }
-        [MaxLength(25),Required]
-        public List<float> Koeficients { get; set; }
-        //Many to Many
-        public List<Result> Results { get; set; }
+        [Range(0,25),Required]
+        public int Positives { get; set; }
+        [Range(0, 25), Required]
+        public int Negatives { get; set; }
+        [Required]
+        public string Koeficients { get; set; }
     }
 }
