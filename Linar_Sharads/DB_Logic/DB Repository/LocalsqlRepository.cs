@@ -5,7 +5,7 @@ using System.Data.Entity;
 
 namespace DB_Logic.Repository
 {
-    class LocalsqlRepository : IRepository<LineGraph>
+    public class LocalsqlRepository : IRepository<LineGraph>
     {
         private LocalContext context;
         private bool disposed = false;

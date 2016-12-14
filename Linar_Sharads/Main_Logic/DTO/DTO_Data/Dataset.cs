@@ -14,7 +14,8 @@ namespace Main_Logic.DTO.DTO_Data
         //public string database_code { get; set; }
         [JsonProperty("name")]
         public string name { get; set; }
-        //public string description { get; set; }
+        [JsonProperty("description")]
+        public string description { get; set; }
         //public string refreshed_at { get; set; }
         //public DateTime newest_available_date { get; set; }
         //public string[] column_names { get; set; }
