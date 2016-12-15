@@ -9,7 +9,6 @@
         xmlns:local="clr-namespace:UserGraphShow"
         mc:Ignorable="d"
         Title="KoefGraphOutput" Height="446" Width="726" >
-    
     <Grid Margin="0,0,-6,0">
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="583*"/>
@@ -18,13 +17,18 @@
         </Grid.ColumnDefinitions>
 
 
+
         <DVC:Chart Name="Chart" Background="Yellow" Grid.ColumnSpan="3">
             <DVC:Chart.Series>
-                <DVC:LineSeries Opacity="0"  Title=" Your Graph" IndependentValueBinding="{Binding Path=Key}" DependentValueBinding="{Binding Path=Value}">
-                </DVC:LineSeries>
+                <DVC:LineSeries Title=" Your Graph" IndependentValueBinding="{Binding Path=Key}"  DependentValueBinding="{Binding Path=Value}" />
             </DVC:Chart.Series>
 
 
+            <DVC:Chart.PlotAreaStyle>
+                <Style TargetType="Grid">
+                    <Setter Property="Background" Value="Black" />
+                </Style>
+            </DVC:Chart.PlotAreaStyle>
 
             <!--<DVC:Chart.Axes>
                 <DVC:LinearAxis Orientation="Y" Minimum="-0,01" Maximum="0,003"/>
