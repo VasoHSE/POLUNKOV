@@ -8,16 +8,16 @@ namespace Main_Logic
     {
         //lets say the step is 1/25 length    
         public static int Pointamount => 25;
-        public  int X0 => FindXY(_path)[0][0];
+        //public  int X0 => FindXy(_path)[0][0];
         public  double[] KfcArray => KoefArray(_path);
-        public  int StepX=> (FindXY(_path)[0][0] + FindXY(_path)[0][FindXY(_path)[0].Length - 1]) / (Pointamount - 1);
+        //public  int StepX=> (FindXy(_path)[0][0] + FindXy(_path)[0][FindXy(_path)[0].Length - 1]) / (Pointamount - 1);
         //private  string _path => "../../../Main_Logic/image.jpeg";
 
 
         private string _path;
         public GetUserGraphUnfoInfo()
         {
-            this._path = "../../../Main_Logic/image.jpeg";
+            this._path = "../../../Main_Logic/image.png";
         }
 
         public static int[][] ImageConvert(string path) //Convert bitmap to double array with 1 and 0
@@ -41,9 +41,11 @@ namespace Main_Logic
 
            
 
-        public static List<int[]> FindXY(string path) //arrays of Xi & Yi
+        public static List<int[]> FindXy(string path) //arrays of Xi & Yi
         {
             
+
+
             var imgArray = ImageConvert(path);
             var xn = 0; //last x
             var xar = imgArray.Length;
@@ -63,16 +65,19 @@ namespace Main_Logic
                     x1 = i;
                     break;
                 }
-            var x = new int[Pointamount];
-            var y = new int[Pointamount];
-            var dx = (int) ((xn - x1)/(Pointamount - 1)); //step
+            var length = xn - x1 + 1;
+
+            var dx = (int)((xn - x1) / (Pointamount - 1)); //step
             if (dx == 0)
                 throw new ArgumentException("Requiring longer function");
+
+            var x= new int[length] ;
+            var y = new int[length];
             var a = 0;
             var i1 = x1;
             var j1 = 0;
-            try
-            {
+            //try
+            //{
                 do // find Xi Yi arrays
                 {
                     if (imgArray[i1][j1] == 1)
@@ -80,24 +85,88 @@ namespace Main_Logic
                         x[a] = i1;
                         y[a] = -j1;
                         a++;
-                        i1 += dx;
+                        i1 ++;
                         j1 = 0;
                     }
                     j1++;
-                } while (i1 < x1 + (Pointamount - 1)*dx + 1);
-            }
-            catch
-            {
-                throw new ArgumentException("Choose a continuous function");
-            }
+                } while (i1 < xn+1);
+            //}
+            //catch
+            //{
+            //    throw new ArgumentException("Choose a continuous function");
+            //}
 
-            var kek = new List<int[]> {x, y};
+            var kek = new List<int[]> { x, y };
             return kek;
+
+
+
+
+
+
+
+            //var array = new List<List<double>>();
+
+
+
+            //var i1 = x1;
+            //var j1 = 0;
+            //try
+            //{
+            //    do // find Xi Yi arrays
+            //    {
+            //        if (imgArray[i1][j1] == 1)
+            //        {
+            //            array[i1][j1] = -j1;
+
+            //            i1++;
+            //            j1 = 0;
+            //        }
+            //        j1++;
+            //    } while (i1 < xn + 1);
+            //}
+            //catch
+            //{
+            //    throw new ArgumentException("Choose a continuous function");
+            //}
+            //return array;
+
+
+
+
+            //var dx = (int)((xn - x1) / (Pointamount - 1)); //step
+            //if (dx == 0)
+            //    throw new ArgumentException("Requiring longer function");
+            //var a = 0;
+            //var i1 = x1;
+            //var j1 = 0;
+            //try
+            //{
+            //    do // find Xi Yi arrays
+            //    {
+            //        if (imgArray[i1][j1] == 1)
+            //        {
+            //            x[a] = i1;
+            //            y[a] = -j1;
+            //            a++;
+            //            i1 += dx;
+            //            j1 = 0;
+            //        }
+            //        j1++;
+            //    } while (i1 < x1 + (Pointamount - 1) * dx + 1);
+            //}
+            //catch
+            //{
+            //    throw new ArgumentException("Choose a continuous function");
+            //}
+
+            //var kek = new List<int[]> { x, y };
+            //return kek;
         }
 
         public static double[] KoefArray(string path) //Array of Ki
         {
-            var plot = FindXY(path);
+            var plot = FindXy(path);
             var x = plot[0];
             var y = plot[1];
             var k = new double[Pointamount - 1];

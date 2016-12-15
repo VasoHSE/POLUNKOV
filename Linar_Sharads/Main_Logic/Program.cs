@@ -26,6 +26,10 @@ namespace Main_Logic
                 Console.WriteLine(i++);
             }
             Console.ReadKey();
+
+
+
+
             //repo.GetKoefs();
         }
     }

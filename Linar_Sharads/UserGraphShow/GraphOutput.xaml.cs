@@ -19,34 +19,28 @@ namespace UserGraphShow
 
         private void button_Click(object sender, RoutedEventArgs e)
         {
-            try
-            {
-                // var repo = new GetUserGraphUnfoInfo();
-                var b = GetUserGraphUnfoInfo.FindXY("../../../Main_Logic/image.jpeg");
-                var x = b[0];
-                var y = b[1];
+           
+                var b = GetUserGraphUnfoInfo.FindXy("../../../Main_Logic/image.jpeg");
+                var x = b[0];  // array of x
+                var y = b[1]; // array of y
                 var ls = new LineSeries
                 {
                     IndependentValueBinding = new Binding("Key"),
                     DependentValueBinding = new Binding("Value")
                 };
-                var a = new KeyValuePair<int, int>[GetUserGraphUnfoInfo.Pointamount];
-                for (var i = 0; i < GetUserGraphUnfoInfo.Pointamount; i++)
+                var a = new KeyValuePair<int, int>[x.Length-1];
+                for (var i = 0; i < x.Length-1; i++)
                     a[i] = new KeyValuePair<int, int>(x[i], y[i]);
 
                 ls.ItemsSource = a;
-                Chart.Series.Clear();
-                Chart.Series.Add(ls);
 
-             
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show(ex.Message, ":(", MessageBoxButton.OKCancel, MessageBoxImage.Error);
-                this.Close();
+            Chart.ItemsSource = a;
 
-            }
+
+
+
         }
+
 
         //private void button1_Click(object sender, RoutedEventArgs e)
         //{
