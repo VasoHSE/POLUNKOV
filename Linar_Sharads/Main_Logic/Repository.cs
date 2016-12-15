@@ -26,68 +26,72 @@ namespace Main_Logic
                                 Description = serializedObject.dataset.description,
                                 Name = serializedObject.dataset.name
                             });
-                yield return dataResult.ToList();
-            }
-        }
-
-
-        public IEnumerable<APIResults> GetApisList()
-        {
-            using (var client = new HttpClient())
-            {
-                for (var i = 1; i < 18; i++)
+                if (dataResult.Count()>=200)
                 {
-                    var result = client.GetStringAsync(
-                        $"https://www.quandl.com/api/v3/datasets.json?database_code=BOE&per_page=100&sort_by=id&page={i}&api_key=14RrJdQgDvzP-AcbYa1H")
-                        .Result;
-                    var deserializedObject = JsonConvert.DeserializeObject<ResponseOnApi>(result);
-                    var apiResults = deserializedObject.datasets.Select(t => new APIResults
-                    {
-                        Url =
-                            $"https://www.quandl.com/api/v3/datasets/{t.database_code}/{t.dataset_code}.json?api_key=14RrJdQgDvzP-AcbYa1H"
-                    });
-                    foreach (var item in apiResults)
-                    {
-                        yield return item;
-                    }
+                    yield return dataResult.ToList();
                 }
-
+                
             }
         }
+
+
+        //public IEnumerable<APIResults> GetApisList()
+        //{
+        //    using (var client = new HttpClient())
+        //    {
+        //        for (var i = 1; i < 18; i++)
+        //        {
+        //            var result = client.GetStringAsync(
+        //                $"https://www.quandl.com/api/v3/datasets.json?database_code=BOE&per_page=100&sort_by=id&page={i}&api_key=14RrJdQgDvzP-AcbYa1H")
+        //                .Result;
+        //            var deserializedObject = JsonConvert.DeserializeObject<ResponseOnApi>(result);
+        //            var apiResults = deserializedObject.datasets.Select(t => new APIResults
+        //            {
+        //                Url =
+        //                    $"https://www.quandl.com/api/v3/datasets/{t.database_code}/{t.dataset_code}.json?api_key=14RrJdQgDvzP-AcbYa1H"
+        //            });
+        //            foreach (var item in apiResults)
+        //            {
+        //                yield return item;
+        //            }
+        //        }
+
+        //    }
+        //}
 
         public void Split<T>(List<T> array, int size, ref List<List<T>> splitedLIst)
         {
-            for (var i = 0; i < 25; i++)
+            for (var i = 0; i < 6; i++)
             {
                 splitedLIst.Add(array.Skip(i * size).Take(size).ToList());
             }
         }
 
-        public IEnumerable<List<float>> GetKoefs()
-        {
-            float t = 0;
-            foreach (var forOneUrl in GetApisList())
-            {
-                foreach (var varpair in MakeQuery(forOneUrl.Url))
-                {
-                    var listOfValues = new List<List<float>>();
-                    foreach (var onePair in varpair)
-                    {
-                        listOfValues.Add(new List<float> { t, onePair.Value });
-                        t += (float)0.0054;
-                    }
-                    var splittedList = new List<List<List<float>>>();
+        //public IEnumerable<List<float>> GetKoefs()
+        //{
+        //    float t = 0;
+        //    foreach (var forOneUrl in GetApisList())
+        //    {
+        //        foreach (var varpair in MakeQuery(forOneUrl.Url))
+        //        {
+        //            var listOfValues = new List<List<float>>();
+        //            foreach (var onePair in varpair)
+        //            {
+        //                listOfValues.Add(new List<float> { t, onePair.Value });
+        //                t += (float)0.0054;
+        //            }
+        //            var splittedList = new List<List<List<float>>>();
 
-                    Split(listOfValues, listOfValues.Count / (GetUserGraphUnfoInfo.Pointamount-1), ref splittedList);
+        //            Split(listOfValues, listOfValues.Count / (GetUserGraphUnfoInfo.Pointamount-1), ref splittedList);
 
-                    var listOfKoef = new List<float>();
+        //            var listOfKoef = new List<float>();
 
-                    splittedList.ForEach(n => listOfKoef.Add(DataProceeding(n)));
-                    yield return listOfKoef;
-                }
-            }
+        //            splittedList.ForEach(n => listOfKoef.Add(DataProceeding(n)));
+        //            yield return listOfKoef;
+        //        }
+        //    }
 
-        }
+        //}
 
         public float DataProceeding(List<List<float>> x)
         {

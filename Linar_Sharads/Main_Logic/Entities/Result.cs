@@ -2,7 +2,7 @@
 
 namespace DB_Logic.Entities
 {
-    class Result
+    public class Result
     {
         public int Id { get; set; }
 

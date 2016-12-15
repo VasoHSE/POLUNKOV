@@ -1,17 +1,17 @@
 ﻿using System.ComponentModel.DataAnnotations;
 
-namespace DB_Logic.Entities
+namespace Main_Logic.Entities
 {
-    class LineGraph
+    public class LineGraph
     {
         [Key]
         public int Id { get; set; }
         
-        [MaxLength(100)]
+        
         public string Name { get; set; }
-        [MaxLength(512)]
+        
         public string Describtion { get; set; }
-        [MaxLength(256), Required]  
+         
         public string WebQuery { get; set; }
         // if plot without WebQuery
         //[Required]

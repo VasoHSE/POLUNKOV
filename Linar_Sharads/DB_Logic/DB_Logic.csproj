@@ -49,13 +49,14 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="AzureContext.cs" />
-    <Compile Include="DB Repository\AzuresqlRepository.cs" />
+    <Compile Include="Context.cs" />
     <Compile Include="DB Entities\LineGraph.cs" />
     <Compile Include="DB Entities\Result.cs" />
-    <Compile Include="DB Repository\IRepository.cs" />
-    <Compile Include="LocalContext.cs" />
-    <Compile Include="DB Repository\LocalsqlRepository.cs" />
+    <Compile Include="Migrations\201612151937358_Initial.cs" />
+    <Compile Include="Migrations\201612151937358_Initial.Designer.cs">
+      <DependentUpon>201612151937358_Initial.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -63,6 +64,11 @@
       <SubType>Designer</SubType>
     </None>
     <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Migrations\201612151937358_Initial.resx">
+      <DependentUpon>201612151937358_Initial.cs</DependentUpon>
+    </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
