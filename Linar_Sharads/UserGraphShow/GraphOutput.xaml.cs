@@ -20,7 +20,7 @@ namespace UserGraphShow
         private void button_Click(object sender, RoutedEventArgs e)
         {
            
-                var b = GetUserGraphUnfoInfo.FindXy("../../../Main_Logic/image.jpeg");
+                var b = GetUserGraphUnfoInfo.FindXy(GetUserGraphUnfoInfo.Path);
                 var x = b[0];  // array of x
                 var y = b[1]; // array of y
                 var ls = new LineSeries

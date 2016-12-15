@@ -24,8 +24,8 @@
     <Grid>
         <DVC:Chart>
             <DVC:Chart.Axes>
-                <DVC:LinearAxis Orientation="Y" Minimum="-302" Maximum="0"/>
-                <DVC:LinearAxis Orientation="X" Maximum="509" Minimum="0"/>
+                <DVC:LinearAxis Orientation="Y" Minimum="-302" Maximum="0" Visibility="Hidden"/>
+                <DVC:LinearAxis Orientation="X" Maximum="509" Minimum="0" Visibility="Hidden"/>
             </DVC:Chart.Axes>
             <DVC:LineSeries 
                         Name="Chart"

@@ -8,6 +8,7 @@ namespace Main_Logic
     {
         //lets say the step is 1/25 length    
         public static int Pointamount => 25;
+        public static string Path => "../../../Main_Logic/image.png";
         //public  int X0 => FindXy(_path)[0][0];
         public  double[] KfcArray => KoefArray(_path);
         //public  int StepX=> (FindXy(_path)[0][0] + FindXy(_path)[0][FindXy(_path)[0].Length - 1]) / (Pointamount - 1);
@@ -31,7 +32,7 @@ namespace Main_Logic
                 for (var j = 0; j < bitmap.Height; ++j)
                 {
                     var pixelCol = bitmap.GetPixel(i, j);
-                    if (pixelCol.ToArgb() == black)
+                    if (pixelCol == Color.FromArgb(0, 0, 0,0))
                         imgArray[i][j] = 0;
                     else
                         imgArray[i][j] = 1;
@@ -43,8 +44,6 @@ namespace Main_Logic
 
         public static List<int[]> FindXy(string path) //arrays of Xi & Yi
         {
-            
-
 
             var imgArray = ImageConvert(path);
             var xn = 0; //last x
