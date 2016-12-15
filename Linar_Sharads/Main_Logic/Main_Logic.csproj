@@ -53,14 +53,16 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="DrawByKoef.cs" />
+    <Compile Include="Comparison\ComparisonByKoef.cs" />
+    <Compile Include="GraphProcessing\DrawByKoef.cs" />
     <Compile Include="DTO\DTO_Data\Dataset.cs" />
     <Compile Include="DTO\DTO_API\Dataset.cs" />
     <Compile Include="DTO\DTO_API\ResponseOnApi.cs" />
     <Compile Include="DTO\DTO_Data\ResponseOnData.cs" />
     <Compile Include="DTO\Models\APIResults.cs" />
     <Compile Include="DTO\Models\DATAResult.cs" />
-    <Compile Include="GetUserGraphUnfoInfo.cs" />
+    <Compile Include="GraphProcessing\GetUserGraphUnfoInfo.cs" />
+    <Compile Include="Comparison\IComparing.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Repository.cs" />
@@ -68,6 +70,12 @@
   <ItemGroup>
     <None Include="App.config" />
     <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\DB_Logic\DB_Logic.csproj">
+      <Project>{a4387f39-6459-4d06-b5af-4c45c3f32f73}</Project>
+      <Name>DB_Logic</Name>
+    </ProjectReference>
   </ItemGroup>
   <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

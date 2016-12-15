@@ -1,11 +1,6 @@
-﻿using System;
-using System.Collections;
-using System.Collections.Generic;
-using System.IO;
+﻿using System.Collections.Generic;
 using System.Linq;
 using System.Net.Http;
-using System.Text;
-using System.Threading.Tasks;
 using Main_Logic.DTO.DTO_API;
 using Main_Logic.DTO.DTO_Data;
 using Main_Logic.DTO.Models;
@@ -15,42 +10,32 @@ namespace Main_Logic
 {
     public class Repository
     {
-      public IEnumerable<List<DATAResult>> MakeQuery()
-      {
-          var listOfData = new List<List<DATAResult>>();
-          using (var client = new HttpClient())
-          {
-              foreach (var item in GetApisList())
-              {
-                  var result = client.GetStringAsync(item.Url).Result;
-                  var serializedObject = JsonConvert.DeserializeObject<ResponseOnData>(result);
-                  var dataResult =
-                      serializedObject.dataset.data.Select(
-                          t =>
-                              new DATAResult
-                              {
-                                  Value = (double) t[1],
-                                  Link = item.Url,
-                                  Description = serializedObject.dataset.name
-                              });
-
-                    if (dataResult.Count() >= 25)
-                    {
-                        yield return dataResult.ToList();
-                    }
-                  
-              }
-          }
-
-
+        public IEnumerable<List<DATAResult>> MakeQuery(string url)
+        {
+            using (var client = new HttpClient())
+            {
+                var result = client.GetStringAsync(url).Result;
+                var serializedObject = JsonConvert.DeserializeObject<ResponseOnData>(result);
+                var dataResult =
+                    serializedObject.dataset.data.Select(
+                        t =>
+                            new DATAResult
+                            {
+                                Value = float.Parse(t[1].ToString()),
+                                Link = url,
+                                Description = serializedObject.dataset.description,
+                                Name = serializedObject.dataset.name
+                            });
+                yield return dataResult.ToList();
+            }
         }
+
 
         public IEnumerable<APIResults> GetApisList()
         {
-            var apisList = new List<APIResults>();
             using (var client = new HttpClient())
             {
-                for (int i = 1; i < 18; i++)
+                for (var i = 1; i < 18; i++)
                 {
                     var result = client.GetStringAsync(
                         $"https://www.quandl.com/api/v3/datasets.json?database_code=BOE&per_page=100&sort_by=id&page={i}&api_key=14RrJdQgDvzP-AcbYa1H")
@@ -66,53 +51,58 @@ namespace Main_Logic
                         yield return item;
                     }
                 }
-                
+
             }
         }
 
         public void Split<T>(List<T> array, int size, ref List<List<T>> splitedLIst)
         {
-            for (var i = 0; i < array.Count / size; i++)
+            for (var i = 0; i < 25; i++)
+            {
                 splitedLIst.Add(array.Skip(i * size).Take(size).ToList());
+            }
         }
 
-        public IEnumerable<List<double>> GetKoefs()
-        {            
-            double t = 0;
-            foreach (var forOneUrl in MakeQuery())
+        public IEnumerable<List<float>> GetKoefs()
+        {
+            float t = 0;
+            foreach (var forOneUrl in GetApisList())
             {
-                var listOfValues = new List<List<double>>();
-                foreach (var varpair in forOneUrl)
+                foreach (var varpair in MakeQuery(forOneUrl.Url))
                 {
-                    listOfValues.Add(new List<double> { t, varpair.Value});
-                    t += 0.0054;
+                    var listOfValues = new List<List<float>>();
+                    foreach (var onePair in varpair)
+                    {
+                        listOfValues.Add(new List<float> { t, onePair.Value });
+                        t += (float)0.0054;
+                    }
+                    var splittedList = new List<List<List<float>>>();
+
+                    Split(listOfValues, listOfValues.Count / (GetUserGraphUnfoInfo.Pointamount-1), ref splittedList);
+
+                    var listOfKoef = new List<float>();
+
+                    splittedList.ForEach(n => listOfKoef.Add(DataProceeding(n)));
+                    yield return listOfKoef;
                 }
-                var splittedList = new List<List<List<double>>>();
-
-                Split(listOfValues, (int)listOfValues.Count / (GetUserGraphUnfoInfo.Pointamount - 1), ref splittedList);
-
-                var listOfKoef = new List<double>();
-
-                splittedList.ForEach(n => listOfKoef.Add(DataProceeding(n)));
-                yield return listOfKoef;
             }
 
         }
 
-        public double DataProceeding(List<List<double>> x)
+        public float DataProceeding(List<List<float>> x)
         {
 
-            double k, b;
+            float k, b;
             GetApprox(x, out k, out b, x.Count);
             return k;
         }
 
-        public static void GetApprox(IReadOnlyList<List<double>> x, out double k, out double b, int n)
+        public static void GetApprox(IReadOnlyList<List<float>> x, out float k, out float b, int n)
         {
-            double sumx = 0;
-            double sumy = 0;
-            double sumx2 = 0;
-            double sumxy = 0;
+            float sumx = 0;
+            float sumy = 0;
+            float sumx2 = 0;
+            float sumxy = 0;
             for (var i = 0; i < n; i++)
             {
                 sumx += x[i][0];

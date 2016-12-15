@@ -2,7 +2,7 @@
 
 namespace DB_Logic.Entities
 {
-    internal class LineGraph
+    public class LineGraph
     {
         [Key]
         public int Id { get; set; }
