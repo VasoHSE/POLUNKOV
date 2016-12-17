@@ -45,7 +45,7 @@ namespace Main_Logic
 
             for (var i = 0; i < listOfKoefs.Count; i++)
             {
-                if (Math.Abs(listOfKoefs[i] - ListOfKoefFromDB[i]) <= 0.5)
+                if (Math.Abs(listOfKoefs[i] - ListOfKoefFromDB[i]) <= 10)
                     temp += 1;
                 else
                 {
@@ -53,9 +53,19 @@ namespace Main_Logic
                 }
             }
 
-            return
+            if (temp>=2)
+            {
+                return
                 selected.Select(t => new DATAResult { Name = t.Name, Description = t.Describtion, Link = t.WebQuery })
                     .First();
+            }
+            else
+            {
+                   throw  new ArgumentException();
+                
+            }
+
+            
         }
     }
 }

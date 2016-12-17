@@ -57,7 +57,11 @@ namespace UserGraphShow
                 MessageBox.Show(ex.Message, ":(", MessageBoxButton.OKCancel, MessageBoxImage.Error);
                 
             }
-            var kek = new UserGraphShow.GraphOutput();
+
+            var pnlClient = this.Content as FrameworkElement;
+            if (pnlClient == null) return;
+            var kek = new GraphOutput(pnlClient.ActualWidth,pnlClient.ActualHeight);
+           // var kek2=new KoefGraphOutput();//+arrayXY
             kek.ShowDialog();
         }
 
