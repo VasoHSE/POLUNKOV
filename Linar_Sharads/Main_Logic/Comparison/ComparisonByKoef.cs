@@ -11,7 +11,7 @@ namespace Main_Logic
 {
     class ComparisonByKoef : IComparing<DATAResult>
     {
-        public DATAResult Compare(List<float> listOfKoefs)
+        public IEnumerable<DATAResult> Compare(List<float> listOfKoefs)
         {
             var positive = listOfKoefs.Count(t => t >= 0);
             var negative = listOfKoefs.Count(t => t < 0);
@@ -21,41 +21,53 @@ namespace Main_Logic
             var selected =
                 c.LineGraph.Where(
                     t =>
-                        Math.Abs(t.Positives - positive) == 0 &&
-                        Math.Abs(t.Negatives - negative) == 0).ToList();
-            //.OrderBy(t => Math.Abs(t.Positives - positive.Count()))
-            //.ThenBy(t => Math.Abs(t.Negatives - negative.Count()));
-
+                        t.Positives == positive&&
+                        t.Negatives == negative).ToList().ToList();
 
             if (selected == null)
                 throw new ArgumentException("There is nothing similar");
 
             var ListOfKoefFromDB = new List<float>();
-
+            var listOfLists = new List<List<float>>();
+            var key = 0;
+            var suitable1 = new Dictionary<int,int>();
+            var suitable = new Dictionary<int,List<float>>();
             foreach (var item in selected)
             {
                 foreach (var innerItem in item.Koeficients.Split(new [] {';'},StringSplitOptions.RemoveEmptyEntries))
                 {
-                    ListOfKoefFromDB.Add(float.Parse(innerItem));
+                    ListOfKoefFromDB.Add(float.Parse(innerItem));  
                 }
-                break;
+                listOfLists.Add(ListOfKoefFromDB);
+                suitable.Add(key++,ListOfKoefFromDB);
+                ListOfKoefFromDB.Clear();
             }
 
             var temp = 0;
-
-            for (var i = 0; i < listOfKoefs.Count; i++)
+            foreach (var oneListOfKoef in suitable)
             {
-                if (Math.Abs(listOfKoefs[i] - ListOfKoefFromDB[i]) <= 0.5)
-                    temp += 1;
-                else
+                for (var i = 0; i < listOfKoefs.Count; i++)
                 {
-                    break;
+                    if (Math.Abs(listOfKoefs[i] - oneListOfKoef.Value[i]) <= 0.5)
+                        temp += 1;                    
                 }
+                suitable1.Add(oneListOfKoef.Key,temp);
             }
 
-            return
-                selected.Select(t => new DATAResult { Name = t.Name, Description = t.Describtion, Link = t.WebQuery })
-                    .First();
+            suitable1 = suitable1.OrderBy(t => t.Value) as Dictionary<int, int>;
+
+            var selectedObjects = new List<DATAResult>();
+
+            foreach (var item in suitable1)
+            {
+               selectedObjects.Add(new DATAResult { Name = selected[item.Key-1].Name, Description = selected[item.Key - 1].Describtion, Link = selected[item.Key - 1].WebQuery });
+               if (selectedObjects.Count==10)
+                    break;
+            }
+
+
+            return selectedObjects;
+
         }
     }
 }
