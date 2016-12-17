@@ -1,7 +1,7 @@
-﻿using DB_Logic.Entities;
-using System.Data.Entity;
+﻿using System.Data.Entity;
+using DB_Logic.DB_Entities;
 
-namespace DB_Logic
+namespace DB_Logic.Context
 {
     internal class AzureContext : DbContext
     {

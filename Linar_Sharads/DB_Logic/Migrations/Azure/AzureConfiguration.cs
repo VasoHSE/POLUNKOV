@@ -1,18 +1,15 @@
+using System.Data.Entity.Migrations;
+
 namespace DB_Logic.Migrations.Azure
 {
-    using System;
-    using System.Data.Entity;
-    using System.Data.Entity.Migrations;
-    using System.Linq;
-
-    internal sealed class AzureConfiguration : DbMigrationsConfiguration<DB_Logic.AzureContext>
+    internal sealed class AzureConfiguration : DbMigrationsConfiguration<DB_Logic.Context.AzureContext>
     {
         public AzureConfiguration()
         {
             AutomaticMigrationsEnabled = false;
         }
 
-        protected override void Seed(DB_Logic.AzureContext context)
+        protected override void Seed(DB_Logic.Context.AzureContext context)
         {
             //  This method will be called after migrating to the latest version.
 

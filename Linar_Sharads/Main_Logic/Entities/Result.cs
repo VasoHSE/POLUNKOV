@@ -1,6 +1,6 @@
 ﻿using System.ComponentModel.DataAnnotations;
 
-namespace DB_Logic.Entities
+namespace DB_Logic.DB_Entities
 {
     public class Result
     {

@@ -1,15 +1,14 @@
 ﻿using System;
 using System.Collections.Generic;
 
-namespace DB_Logic.Repository
+namespace DB_Logic.DB_Repository
 {
-    public interface IRepository<T> : IDisposable where T : class
+    public interface IRepository<TEntity>  where TEntity : class
     {
-        T Get(int index);
-        IEnumerable<T> GetAll();         
-        void Add(T data);         
+        TEntity Get(int index);
+        IEnumerable<TEntity> GetAll();         
+        void Add(TEntity data);         
         void Delete(int index);
-        void Update(T data);
-        void Save();  
+        void Update(TEntity data);
     }
 }

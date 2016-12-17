@@ -1,23 +1,20 @@
 ﻿using System.ComponentModel.DataAnnotations;
 
-namespace DB_Logic.Entities
+namespace DB_Logic.DB_Entities
 {
-    class LineGraph
+    public class LineGraph
     {
         [Key]
         public int Id { get; set; }
         
-        [MaxLength(100)]
+        [Required]
         public string Name { get; set; }
-        [MaxLength(512)]
+        [Required]
         public string Describtion { get; set; }
-        [MaxLength(256), Required]  
+        [MaxLength(512), Required]  
         public string WebQuery { get; set; }
-        // if plot without WebQuery
-        //[Required]
-        //public float StartValue { get; set; }   
-        //[Required]
-        //public float EndValue { get; set; }
+
+        // For comparison
         [Range(0,25),Required]
         public int Positives { get; set; }
         [Range(0, 25), Required]

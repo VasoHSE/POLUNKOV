@@ -1,9 +1,8 @@
+using System.Data.Entity.Migrations;
+
 namespace DB_Logic.Migrations.Local
 {
-    using System;
-    using System.Data.Entity.Migrations;
-    
-    public partial class InitialLocalDB : DbMigration
+    public partial class InitialLocalDb : DbMigration
     {
         public override void Up()
         {
@@ -12,9 +11,9 @@ namespace DB_Logic.Migrations.Local
                 c => new
                     {
                         Id = c.Int(nullable: false, identity: true),
-                        Name = c.String(maxLength: 100),
-                        Describtion = c.String(maxLength: 512),
-                        WebQuery = c.String(nullable: false, maxLength: 256),
+                        Name = c.String(nullable: false),
+                        Describtion = c.String(nullable: false),
+                        WebQuery = c.String(nullable: false, maxLength: 512),
                         Positives = c.Int(nullable: false),
                         Negatives = c.Int(nullable: false),
                         Koeficients = c.String(nullable: false),

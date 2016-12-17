@@ -1,18 +1,15 @@
+using System.Data.Entity.Migrations;
+
 namespace DB_Logic.Migrations.Local
 {
-    using System;
-    using System.Data.Entity;
-    using System.Data.Entity.Migrations;
-    using System.Linq;
-
-    internal sealed class LocalConfiguration : DbMigrationsConfiguration<DB_Logic.LocalContext>
+    internal sealed class LocalConfiguration : DbMigrationsConfiguration<DB_Logic.Context.LocalContext>
     {
         public LocalConfiguration()
         {
             AutomaticMigrationsEnabled = false;
         }
 
-        protected override void Seed(DB_Logic.LocalContext context)
+        protected override void Seed(DB_Logic.Context.LocalContext context)
         {
             //  This method will be called after migrating to the latest version.
 

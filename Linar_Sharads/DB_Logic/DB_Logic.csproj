@@ -49,24 +49,24 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="AzureContext.cs" />
-    <Compile Include="DB Repository\AzuresqlRepository.cs" />
+    <Compile Include="Context\AzureContext.cs" />
     <Compile Include="DB Entities\LineGraph.cs" />
     <Compile Include="DB Entities\Result.cs" />
+    <Compile Include="DB Repository\SqlDbRepository.cs" />
     <Compile Include="DB Repository\IRepository.cs" />
-    <Compile Include="LocalContext.cs" />
-    <Compile Include="DB Repository\LocalsqlRepository.cs" />
-    <Compile Include="Migrations\201612170932306_InitialAzureDB.cs" />
-    <Compile Include="Migrations\201612170932306_InitialAzureDB.Designer.cs">
-      <DependentUpon>201612170932306_InitialAzureDB.cs</DependentUpon>
+    <Compile Include="Context\LocalContext.cs" />
+    <Compile Include="Migrations\Azure\201612171711195_InitialAzureDb.cs" />
+    <Compile Include="Migrations\Azure\201612171711195_InitialAzureDb.Designer.cs">
+      <DependentUpon>201612171711195_InitialAzureDb.cs</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\201612170935296_InitialLocalDB.cs" />
-    <Compile Include="Migrations\201612170935296_InitialLocalDB.Designer.cs">
-      <DependentUpon>201612170935296_InitialLocalDB.cs</DependentUpon>
+    <Compile Include="Migrations\Local\201612171647086_InitialLocalDb.cs" />
+    <Compile Include="Migrations\Local\201612171647086_InitialLocalDb.Designer.cs">
+      <DependentUpon>201612171647086_InitialLocalDb.cs</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\AzureConfiguration.cs" />
-    <Compile Include="Migrations\LocalConfiguration.cs" />
+    <Compile Include="Migrations\Azure\AzureConfiguration.cs" />
+    <Compile Include="Migrations\Local\LocalConfiguration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="UnitOfWork.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config">
@@ -75,11 +75,11 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Migrations\201612170932306_InitialAzureDB.resx">
-      <DependentUpon>201612170932306_InitialAzureDB.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\Azure\201612171711195_InitialAzureDb.resx">
+      <DependentUpon>201612171711195_InitialAzureDb.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201612170935296_InitialLocalDB.resx">
-      <DependentUpon>201612170935296_InitialLocalDB.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\Local\201612171647086_InitialLocalDb.resx">
+      <DependentUpon>201612171647086_InitialLocalDb.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

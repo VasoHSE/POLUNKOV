@@ -1,29 +1,30 @@
 ﻿using System.ComponentModel.DataAnnotations;
 
-namespace DB_Logic.Entities
+namespace DB_Logic.DB_Entities
 {
-    class Result
+    public class Result
     {
+        [Key]
         public int Id { get; set; }
 
-        [MaxLength(100)]
+        [Required]
         public string Name { get; set; }
-        [MaxLength(512)]
+        [Required]
         public string Describtion { get; set; }
+        public byte[] Picture { get; set; }
 
-        [Required]
-        public float StartValue { get; set; }
-        [Required]
-        public float EndValue { get; set; }
-        [Required]
-        public string Koeficients { get; set; }
+        // if plot by Koeficients
+        //[Required]
+        //public float StartValue { get; set; }
+        //[Required]
+        //public float EndValue { get; set; }
+        //[Required]
+        //public string Koeficients { get; set; }
 
         // Graphs from local database
-        [MaxLength(100)]
-        public string LineGraph_Name { get; set; }
-        [MaxLength(512)]
-        public string Line_Graph_Describtion { get; set; }
-        [MaxLength(256), Required]
-        public string LineGraph_WebQuery { get; set; }
+        public string LineGraphName { get; set; }
+        public string LineGraphDescribtion { get; set; }
+        [MaxLength(512), Required]
+        public string LineGraphWebQuery { get; set; }
     }
 }
