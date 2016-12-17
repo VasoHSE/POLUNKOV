@@ -33,6 +33,14 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\packages\EntityFramework.6.1.3\lib\net45\EntityFramework.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="EntityFramework.SqlServer, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\packages\EntityFramework.6.1.3\lib\net45\EntityFramework.SqlServer.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
     <Reference Include="Newtonsoft.Json, Version=9.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
       <HintPath>..\packages\Newtonsoft.Json.9.0.1\lib\net45\Newtonsoft.Json.dll</HintPath>
       <Private>True</Private>
@@ -53,14 +61,32 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="DrawByKoef.cs" />
+    <Compile Include="Comparison\ComparisonByKoef.cs" />
+    <Compile Include="Context.cs" />
+    <Compile Include="Entities\LineGraph.cs" />
+    <Compile Include="Entities\Result.cs" />
+    <Compile Include="GraphProcessing\DrawByKoef.cs" />
     <Compile Include="DTO\DTO_Data\Dataset.cs" />
     <Compile Include="DTO\DTO_API\Dataset.cs" />
     <Compile Include="DTO\DTO_API\ResponseOnApi.cs" />
     <Compile Include="DTO\DTO_Data\ResponseOnData.cs" />
     <Compile Include="DTO\Models\APIResults.cs" />
     <Compile Include="DTO\Models\DATAResult.cs" />
-    <Compile Include="GetUserGraphUnfoInfo.cs" />
+    <Compile Include="GraphProcessing\GetUserGraphUnfoInfo.cs" />
+    <Compile Include="Comparison\IComparing.cs" />
+    <Compile Include="Migrations\201612151937358_Initial.cs" />
+    <Compile Include="Migrations\201612151937358_Initial.Designer.cs">
+      <DependentUpon>201612151937358_Initial.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201612152056172_ChangedReferences.cs" />
+    <Compile Include="Migrations\201612152056172_ChangedReferences.Designer.cs">
+      <DependentUpon>201612152056172_ChangedReferences.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201612152059515_ChangedValidations.cs" />
+    <Compile Include="Migrations\201612152059515_ChangedValidations.Designer.cs">
+      <DependentUpon>201612152059515_ChangedValidations.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Repository.cs" />
@@ -70,10 +96,15 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\DB_Logic\DB_Logic.csproj">
-      <Project>{a4387f39-6459-4d06-b5af-4c45c3f32f73}</Project>
-      <Name>DB_Logic</Name>
-    </ProjectReference>
+    <EmbeddedResource Include="Migrations\201612151937358_Initial.resx">
+      <DependentUpon>201612151937358_Initial.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201612152056172_ChangedReferences.resx">
+      <DependentUpon>201612152056172_ChangedReferences.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201612152059515_ChangedValidations.resx">
+      <DependentUpon>201612152059515_ChangedValidations.cs</DependentUpon>
+    </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

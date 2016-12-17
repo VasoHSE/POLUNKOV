@@ -12,7 +12,7 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
-
+using Main_Logic;
 namespace UserGraphShow
 {
     /// <summary>
@@ -50,7 +50,7 @@ namespace UserGraphShow
         {
             try
             {
-                SaveTo("../../../Main_Logic/image.jpeg");
+                SaveTo(GetUserGraphUnfoInfo.Path);
             }
             catch (Exception ex)
             {
@@ -63,10 +63,25 @@ namespace UserGraphShow
 
         public void SaveTo(string f)
         {
+            //        RenderTargetBitmap rtb = new RenderTargetBitmap((int)paintSurface.RenderSize.Width,
+            //(int)paintSurface.RenderSize.Height, 96d, 96d, System.Windows.Media.PixelFormats.Default);
+            //        rtb.Render(paintSurface);
+
+            //        var crop = new CroppedBitmap(rtb, new Int32Rect(50, 50, 1000, 1000));
+
+            //        BitmapEncoder pngEncoder = new PngBitmapEncoder();
+            //        pngEncoder.Frames.Add(BitmapFrame.Create(crop));
+
+            //        using (var fs = System.IO.File.OpenWrite(f))
+            //        {
+            //            pngEncoder.Save(fs);
+            //        }
+
+
             var b = VisualTreeHelper.GetDescendantBounds(paintSurface);
             var r = new RenderTargetBitmap((int)b.Width, (int)b.Height, 96, 96, PixelFormats.Default);
             r.Render(paintSurface);
-            var e = new JpegBitmapEncoder();
+            var e = new PngBitmapEncoder();
             e.Frames.Add(BitmapFrame.Create(r));
             var s = new FileStream(f, FileMode.OpenOrCreate, FileAccess.Write);
             e.Save(s);

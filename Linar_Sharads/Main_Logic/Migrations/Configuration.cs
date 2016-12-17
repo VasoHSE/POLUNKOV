@@ -1,58 +1,33 @@
-﻿
-using Main_Logic;
-using Main_Logic.DTO.DTO_API;
-using Main_Logic.DTO.Models;
-using Main_Logic.Entities;
-using Newtonsoft.Json;
-using System;
-using System.Collections.Generic;
-using System.Data.Entity;
-using System.Data.Entity.Migrations;
-using System.Linq;
-using System.Net.Http;
-using System.Text;
-
-namespace Main_Logic
+namespace Main_Logic.Migrations
 {
-    internal class Program
+    using Entities;
+    using Main_Logic;
+    using Main_Logic.DTO.DTO_API;
+    using Main_Logic.DTO.Models;
+    using Newtonsoft.Json;
+    using System;
+    using System.Collections.Generic;
+    using System.Data.Entity;
+    using System.Data.Entity.Migrations;
+    using System.Linq;
+    using System.Net.Http;
+    using System.Text;
+
+    internal sealed class Configuration : DbMigrationsConfiguration<Context>
     {
-        private static void Main()
+        public Configuration()
         {
-            //Test
-            //using (var context = new Context())
-            //{
-            //    context.Database.Delete();
-            //    context.Database.CreateIfNotExists();
-
-            //    context.SaveChanges();
-            //}
-            //var kek = GetUserGraphUnfoInfo.KoefArray("../../../Main_Logic/image.jpeg");
-            //System.Console.ReadLine();
-            //Repository repository = new Repository();
-
-            //int i = 0;
-            //foreach (var item in repository.GetKoefs())
-            //{
-            //    Console.WriteLine(i++);
-            //}
-            //Console.ReadKey();
-            //repo.GetKoefs();
-
-            Context c = new Context();
-            c.Database.Delete();
-            c.Database.CreateIfNotExists();
-            Program p = new Program();
-            p.Seed(c);
+            AutomaticMigrationsEnabled = false;
         }
 
         Repository repo = new Repository();
-        public void Seed(Context context)
+        protected override void Seed (Context context)
         {
-
+            
             foreach (var forOneUrl in GetApisList())
             {
                 float t = 0;
-
+                
                 foreach (var varpair in repo.MakeQuery(forOneUrl.Url))
                 {
                     DATAResult dres = new DATAResult();
@@ -61,7 +36,7 @@ namespace Main_Logic
                     {
                         dres = onePair;
                         listOfValues.Add(new List<float> { t, onePair.Value });
-                        t += (float)0.05;
+                        t += 600/listOfValues.Count();                        
                     }
                     var splittedList = new List<List<List<float>>>();
 
@@ -83,7 +58,7 @@ namespace Main_Logic
                 }
             }
 
-
+            
         }
 
         private static string ConvertStringArrayToString(List<float> array)
@@ -122,4 +97,3 @@ namespace Main_Logic
         }
     }
 }
-
