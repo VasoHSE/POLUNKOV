@@ -75,8 +75,8 @@ namespace Main_Logic
                         Name = dres.Name,
                         Describtion = dres.Description,
                         WebQuery = dres.Link,
-                        Negatives = listOfKoef.Where(p => p >= 0).Count(),
-                        Positives = listOfKoef.Where(n => n < 0).Count(),
+                        Negatives = listOfKoef.Where(p => p < 0).Count(),
+                        Positives = listOfKoef.Where(n => n >= 0).Count(),
                         Koeficients = ConvertStringArrayToString(listOfKoef)
                     });
                     context.SaveChanges();

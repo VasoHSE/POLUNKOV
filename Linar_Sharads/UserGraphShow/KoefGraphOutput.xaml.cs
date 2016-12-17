@@ -40,7 +40,7 @@ namespace UserGraphShow
             };
             var a = new KeyValuePair<float, float>[x.Count - 1];
             for (var i = 0; i < x.Count - 1; i++)
-                a[i] = new KeyValuePair<float, float>(-x[i],  y[i]);
+                a[i] = new KeyValuePair<float, float>(x[i],  y[i]);
             ls.ItemsSource = a;
             Chart.ItemsSource = a;
             //try
@@ -78,6 +78,11 @@ namespace UserGraphShow
 
 
 
+
+        }
+
+        private void button1_Click(object sender, RoutedEventArgs e)
+        {
 
         }
     }

@@ -50,8 +50,8 @@ namespace Main_Logic.Migrations
                         Name = dres.Name,
                         Describtion = dres.Description,
                         WebQuery = dres.Link,
-                        Negatives = listOfKoef.Where(p => p >= 0).Count(),
-                        Positives = listOfKoef.Where(n => n < 0).Count(),
+                        Negatives = listOfKoef.Count(p => p <= 0),
+                        Positives = listOfKoef.Count(n => n >= 0),
                         Koeficients = ConvertStringArrayToString(listOfKoef)
                     });
                     context.SaveChanges();

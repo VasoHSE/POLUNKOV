@@ -15,7 +15,7 @@ namespace Main_Logic
         public static int Pointamount => 7;
         public static string Path => "../../../Main_Logic/image.png";
         //public  int X0 => FindXy(_path)[0][0];
-        //public  double[] KfcArray => KoefArray(_path);
+        public  double[] KfcArray => KoefArray(_path);
         //public  int StepX=> (FindXy(_path)[0][0] + FindXy(_path)[0][FindXy(_path)[0].Length - 1]) / (Pointamount - 1);
         //private  string _path => "../../../Main_Logic/image.jpeg";
 
@@ -187,8 +187,8 @@ namespace Main_Logic
             IComparing<DATAResult> compare = new ComparisonByKoef();
 
             var result = compare.Compare(listOfKoefs);
-
-            var fromQuery = repository.MakeQuery(result.Link);
+          
+            var fromQuery = repository.MakeQuery(result.ToList()[new Random().Next(0, result.Count())].Link);
 
             var listOfKoefsForDrawing = new List<List<float>>();
 
@@ -202,7 +202,7 @@ namespace Main_Logic
                 foreach (var innerItem in item)
                 {
                     listOfKoefsForDrawing[0].Add((innerItem.Value));
-                    listOfKoefsForDrawing[1].Add(z += 600 / item.Count);
+                    listOfKoefsForDrawing[1].Add(z+=1);
                 }
             }
             return listOfKoefsForDrawing;
