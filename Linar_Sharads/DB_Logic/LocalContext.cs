@@ -3,11 +3,11 @@ using System.Data.Entity;
 
 namespace DB_Logic
 {
-    internal class AzureContext : DbContext
+    internal class LocalContext : DbContext
     {
-        public AzureContext() : base("azuresql") { }
+        public LocalContext() : base("localsql") { }
 
-        public DbSet<Result> Results { get; set; }
+        public DbSet<LineGraph> LineGraphs { get; set; }
 
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {

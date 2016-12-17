@@ -56,6 +56,16 @@
     <Compile Include="DB Repository\IRepository.cs" />
     <Compile Include="LocalContext.cs" />
     <Compile Include="DB Repository\LocalsqlRepository.cs" />
+    <Compile Include="Migrations\201612170932306_InitialAzureDB.cs" />
+    <Compile Include="Migrations\201612170932306_InitialAzureDB.Designer.cs">
+      <DependentUpon>201612170932306_InitialAzureDB.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201612170935296_InitialLocalDB.cs" />
+    <Compile Include="Migrations\201612170935296_InitialLocalDB.Designer.cs">
+      <DependentUpon>201612170935296_InitialLocalDB.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\AzureConfiguration.cs" />
+    <Compile Include="Migrations\LocalConfiguration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -63,6 +73,14 @@
       <SubType>Designer</SubType>
     </None>
     <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Migrations\201612170932306_InitialAzureDB.resx">
+      <DependentUpon>201612170932306_InitialAzureDB.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201612170935296_InitialLocalDB.resx">
+      <DependentUpon>201612170935296_InitialLocalDB.cs</DependentUpon>
+    </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
