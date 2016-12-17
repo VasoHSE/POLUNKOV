@@ -53,7 +53,7 @@ namespace Main_Logic
                 }
             }
 
-            if (temp>=2)
+            if (temp>=1)
             {
                 return
                 selected.Select(t => new DATAResult { Name = t.Name, Description = t.Describtion, Link = t.WebQuery })
