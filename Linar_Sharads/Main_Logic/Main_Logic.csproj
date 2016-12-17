@@ -105,6 +105,12 @@
       <DependentUpon>201612152059515_ChangedValidations.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\DB_Logic\DB_Logic.csproj">
+      <Project>{a4387f39-6459-4d06-b5af-4c45c3f32f73}</Project>
+      <Name>DB_Logic</Name>
+    </ProjectReference>
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.
