@@ -172,7 +172,7 @@ namespace Main_Logic
             //return kek;
         }
 
-        public void DotaForDrawing(List<List<int>> kek)
+        public List<List<float>> DotaForDrawing(List<List<int>> kek)
         {
             var splittedList = new List<List<List<int>>>();
             Repository repository = new Repository();
@@ -201,10 +201,11 @@ namespace Main_Logic
                 listOfKoefsForDrawing.Add(new List<float>());
                 foreach (var innerItem in item)
                 {
-                    listOfKoefsForDrawing[0].Add((-310 / innerItem.Value) * item.Count);
+                    listOfKoefsForDrawing[0].Add((innerItem.Value));
                     listOfKoefsForDrawing[1].Add(z += 600 / item.Count);
                 }
             }
+            return listOfKoefsForDrawing;
         }
 
         public static double[] KoefArray(string path) //Array of Ki
@@ -216,6 +217,27 @@ namespace Main_Logic
             for (var i = 0; i < Pointamount - 1; i++)
                 k[i] = Math.Round((double) (y[i + 1] - y[i])/(double) (x[i + 1] - x[i]), 2);
             return k;
+        }
+
+        public List<List<float>> EconGraphArray(List<int[]> b)
+        {
+
+
+            var list = new List<List<int>>();
+            for (int i = 0; i < b[0].Length; i++)
+            {
+                list.Add(new List<int> { b[1][i],b[0][i] });
+            }
+            return DotaForDrawing(list);
+
+            
+
+
+            //var x = b[0];  // array of x
+            //var y = b[1]; // array of y
+
+
+
         }
     }
 }
