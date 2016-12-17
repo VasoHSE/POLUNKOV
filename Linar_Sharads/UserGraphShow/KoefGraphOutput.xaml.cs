@@ -20,41 +20,64 @@ namespace UserGraphShow
     /// </summary>
     public partial class KoefGraphOutput : Window
     {
-        public KoefGraphOutput()
+        private List<List<float>> _list;
+
+        public KoefGraphOutput(List<int[]> b)
         {
             InitializeComponent();
+            _list = new GetUserGraphUnfoInfo().EconGraphArray(b);
+
         }
 
         private void button_Click(object sender, RoutedEventArgs e)
         {
-
-            try
+            var y = _list[0];  // array of x
+            var x = _list[1]; // array of y
+            var ls = new LineSeries
             {
-                var kek = new DrawByKoef();
-                var b = kek.XYKOEF();
-                var x = b[0];
-                var y = b[1];
-                var ls = new LineSeries
-                {
-                    IndependentValueBinding = new Binding("Key"),
-                    DependentValueBinding = new Binding("Value")
-                };
-                var a = new KeyValuePair<double, double>[GetUserGraphUnfoInfo.Pointamount];
-                for (var i = 0; i < GetUserGraphUnfoInfo.Pointamount; i++)
-                    a[i] = new KeyValuePair<double, double>(x[i], y[i]);
+                IndependentValueBinding = new Binding("Key"),
+                DependentValueBinding = new Binding("Value")
+            };
+            var a = new KeyValuePair<float, float>[x.Count - 1];
+            for (var i = 0; i < x.Count - 1; i++)
+                a[i] = new KeyValuePair<float, float>(-x[i],  y[i]);
+            ls.ItemsSource = a;
+            Chart.ItemsSource = a;
+            //try
+            //{
+            //    var kek = new DrawByKoef();
+            //    var b = kek.XYKOEF();
+            //    var x = b[0];
+            //    var y = b[1];
+            //    var ls = new LineSeries
+            //    {
+            //        IndependentValueBinding = new Binding("Key"),
+            //        DependentValueBinding = new Binding("Value")
+            //    };
+            //    var a = new KeyValuePair<double, double>[GetUserGraphUnfoInfo.Pointamount];
+            //    for (var i = 0; i < GetUserGraphUnfoInfo.Pointamount; i++)
+            //        a[i] = new KeyValuePair<double, double>(x[i], y[i]);
 
-                ls.ItemsSource = a;
-                Chart.Series.Clear();
-                Chart.Series.Add(ls);
+            //    ls.ItemsSource = a;
+            //    Chart.Series.Clear();
+            //    Chart.Series.Add(ls);
 
 
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show(ex.Message, ":(", MessageBoxButton.OKCancel, MessageBoxImage.Error);
-                this.Close();
+            //}
+            //catch (Exception ex)
+            //{
+            //    MessageBox.Show(ex.Message, ":(", MessageBoxButton.OKCancel, MessageBoxImage.Error);
+            //    this.Close();
 
-            }
+            //}
+
+            // find XY
+            // koef
+            // 
+
+
+
+
 
         }
     }

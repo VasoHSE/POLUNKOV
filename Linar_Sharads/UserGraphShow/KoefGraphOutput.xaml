@@ -8,35 +8,32 @@
        
         xmlns:local="clr-namespace:UserGraphShow"
         mc:Ignorable="d"
-        Title="KoefGraphOutput" Height="446" Width="726" >
-    <Grid Margin="0,0,-6,0">
+        Title="KoefGraphOutput"  >
+    <Window.Resources>
+
+        <Style x:Key="LineDataPointStyle1" TargetType="{x:Type DVC:LineDataPoint}">
+            <Setter Property="Width" Value="0"/>
+            <Setter Property="Height" Value="0"/>
+        </Style>
+
+    </Window.Resources>
+
+    <Grid>
         <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="583*"/>
-            <ColumnDefinition Width="92*"/>
-            <ColumnDefinition Width="51*"/>
+            <ColumnDefinition Width="0*"/>
+            <ColumnDefinition Width="107*"/>
+            <ColumnDefinition Width="119*"/>
+            <ColumnDefinition Width="491*"/>
+            <ColumnDefinition/>
         </Grid.ColumnDefinitions>
-
-
-
-        <DVC:Chart Name="Chart" Background="Yellow" Grid.ColumnSpan="3">
-            <DVC:Chart.Series>
-                <DVC:LineSeries Title=" Your Graph" IndependentValueBinding="{Binding Path=Key}"  DependentValueBinding="{Binding Path=Value}" />
-            </DVC:Chart.Series>
-
-
-            <DVC:Chart.PlotAreaStyle>
-                <Style TargetType="Grid">
-                    <Setter Property="Background" Value="Black" />
-                </Style>
-            </DVC:Chart.PlotAreaStyle>
-
-            <!--<DVC:Chart.Axes>
-                <DVC:LinearAxis Orientation="Y" Minimum="-0,01" Maximum="0,003"/>
-                <DVC:LinearAxis Orientation="X" Maximum="260" Minimum="-5"/>
-                <DVC:LinearAxis Visibility="Hidden"/>
-            </DVC:Chart.Axes>-->
-
+        <DVC:Chart Grid.ColumnSpan="5" >
+          
+            <DVC:LineSeries 
+                        Name="Chart"
+                         IndependentValueBinding="{Binding Path=Key}"  DependentValueBinding="{Binding Path=Value}"
+                     
+                        DataPointStyle="{DynamicResource LineDataPointStyle1}"/>
         </DVC:Chart>
-        <Button x:Name="button" Content="Show" HorizontalAlignment="Left" Margin="8,10,0,0" VerticalAlignment="Top" Width="75" Grid.Column="1" Height="22" Click="button_Click"/>
+        <Button x:Name="button" Content="Button" HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top" Width="75" Click="button_Click" Grid.Column="2" Height="22"/>
     </Grid>
 </Window>

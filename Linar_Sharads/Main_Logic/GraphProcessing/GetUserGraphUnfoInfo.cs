@@ -1,13 +1,18 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data.Entity.ModelConfiguration.Conventions;
 using System.Drawing;
+using System.Linq;
+using System.Security.Cryptography.X509Certificates;
+using DB_Logic;
+using Main_Logic.DTO.Models;
 
 namespace Main_Logic
 {
     public class GetUserGraphUnfoInfo
     {
         //lets say the step is 1/25 length    
-        public static int Pointamount => 25;
+        public static int Pointamount => 7;
         public static string Path => "../../../Main_Logic/image.png";
         //public  int X0 => FindXy(_path)[0][0];
         public  double[] KfcArray => KoefArray(_path);
@@ -95,12 +100,16 @@ namespace Main_Logic
             //    throw new ArgumentException("Choose a continuous function");
             //}
 
+
+            //var kek = new List<List<int>>();
+            //for (var i = 0; i < x.Length; i++)
+            //{
+            //    kek.Add(new List<int> {x[i],y[i]});
+            //}
+
             var kek = new List<int[]> { x, y };
+
             return kek;
-
-
-
-
 
 
 
@@ -163,6 +172,42 @@ namespace Main_Logic
             //return kek;
         }
 
+        public List<List<float>> DotaForDrawing(List<List<int>> kek)
+        {
+            var splittedList = new List<List<List<int>>>();
+            Repository repository = new Repository();
+            repository.Split(kek, kek.Count / Pointamount - 1, ref splittedList);
+            var listOfKoefs = new List<float>();
+
+            foreach (var item in splittedList)
+            {
+                listOfKoefs.Add(repository.DataProceeding(item.Select(t => t.Select(n => (float)n).ToList()).ToList()));
+            }
+
+            IComparing<DATAResult> compare = new ComparisonByKoef();
+
+            var result = compare.Compare(listOfKoefs);
+
+            var fromQuery = repository.MakeQuery(result.Link);
+
+            var listOfKoefsForDrawing = new List<List<float>>();
+
+
+            float z = 0;
+
+            foreach (var item in fromQuery)
+            {
+                listOfKoefsForDrawing.Add(new List<float>());
+                listOfKoefsForDrawing.Add(new List<float>());
+                foreach (var innerItem in item)
+                {
+                    listOfKoefsForDrawing[0].Add((innerItem.Value));
+                    listOfKoefsForDrawing[1].Add(z += 600 / item.Count);
+                }
+            }
+            return listOfKoefsForDrawing;
+        }
+
         public static double[] KoefArray(string path) //Array of Ki
         {
             var plot = FindXy(path);
@@ -172,6 +217,27 @@ namespace Main_Logic
             for (var i = 0; i < Pointamount - 1; i++)
                 k[i] = Math.Round((double) (y[i + 1] - y[i])/(double) (x[i + 1] - x[i]), 2);
             return k;
+        }
+
+        public List<List<float>> EconGraphArray(List<int[]> b)
+        {
+
+
+            var list = new List<List<int>>();
+            for (int i = 0; i < b[0].Length; i++)
+            {
+                list.Add(new List<int> { b[1][i],b[0][i] });
+            }
+            return DotaForDrawing(list);
+
+            
+
+
+            //var x = b[0];  // array of x
+            //var y = b[1]; // array of y
+
+
+
         }
     }
 }

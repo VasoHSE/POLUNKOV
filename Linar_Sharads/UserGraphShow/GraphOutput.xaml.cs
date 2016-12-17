@@ -12,9 +12,15 @@ namespace UserGraphShow
     /// </summary>
     public partial class GraphOutput
     {
-        public GraphOutput()
+        public GraphOutput(double width,double height)
         {
             InitializeComponent();
+            //var pnlClient = this.Content as FrameworkElement;
+            ////pnlClient.Height = height;
+            ////pnlClient.Width = width;
+            //Chart.Width = width;
+            //Chart.Height = height;
+
         }
 
         private void button_Click(object sender, RoutedEventArgs e)
@@ -31,14 +37,10 @@ namespace UserGraphShow
                 var a = new KeyValuePair<int, int>[x.Length-1];
                 for (var i = 0; i < x.Length-1; i++)
                     a[i] = new KeyValuePair<int, int>(x[i], y[i]);
-
                 ls.ItemsSource = a;
-
             Chart.ItemsSource = a;
-
-
-
-
+           var kek = new KoefGraphOutput(b);
+            kek.ShowDialog();
         }
 
 

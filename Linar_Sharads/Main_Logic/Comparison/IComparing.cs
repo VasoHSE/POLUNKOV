@@ -8,6 +8,6 @@ namespace DB_Logic
 {
     interface IComparing<T>
     {
-        T Compare(List<float> listOfKoefs);
+        IEnumerable<T> Compare(List<float> listOfKoefs);
     }
 }
