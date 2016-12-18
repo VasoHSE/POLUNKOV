@@ -2,7 +2,7 @@
 using Main_Logic;
 using Main_Logic.DTO.DTO_API;
 using Main_Logic.DTO.Models;
-using Main_Logic.Entities;
+
 using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
@@ -11,6 +11,8 @@ using System.Data.Entity.Migrations;
 using System.Linq;
 using System.Net.Http;
 using System.Text;
+using DB_Logic;
+using DB_Logic.DB_Entities;
 
 namespace Main_Logic
 {
@@ -38,15 +40,13 @@ namespace Main_Logic
             //Console.ReadKey();
             //repo.GetKoefs();
 
-            Context c = new Context();
-            c.Database.Delete();
-            c.Database.CreateIfNotExists();
+            var c = new UnitOfWork("local");
             Program p = new Program();
             p.Seed(c);
         }
 
         Repository repo = new Repository();
-        public void Seed(Context context)
+        public void Seed(UnitOfWork context)
         {
 
             foreach (var forOneUrl in GetApisList())
@@ -70,16 +70,16 @@ namespace Main_Logic
                     var listOfKoef = new List<float>();
 
                     splittedList.ForEach(n => listOfKoef.Add(repo.DataProceeding(n)));
-                    context.LineGraph.Add(new LineGraph
+                    context.LineGraphs.Add(new LineGraph
                     {
                         Name = dres.Name,
                         Describtion = dres.Description,
                         WebQuery = dres.Link,
-                        Negatives = listOfKoef.Where(p => p < 0).Count(),
-                        Positives = listOfKoef.Where(n => n >= 0).Count(),
+                        Negatives = listOfKoef.Count(p => p < 0),
+                        Positives = listOfKoef.Count(n => n >= 0),
                         Koeficients = ConvertStringArrayToString(listOfKoef)
                     });
-                    context.SaveChanges();
+                    context.Save();
                 }
             }
 

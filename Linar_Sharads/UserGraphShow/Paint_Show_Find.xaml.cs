@@ -22,8 +22,8 @@ namespace UserGraphShow
 
         public Paint_Show_Find()
         {
-            try
-            {
+            //try
+            //{
 
            
            InitializeComponent();
@@ -35,12 +35,12 @@ namespace UserGraphShow
             ShowInfo();
             //MessageBox.Show($"{l}");
             FindGraph();
-            }
-            catch (Exception e)
-            {
+            //}
+            //catch (Exception e)
+            //{
 
-                MessageBox.Show(e.Message);
-            }
+            //    MessageBox.Show(e.Message);
+            //}
         }
        
 
@@ -59,15 +59,10 @@ namespace UserGraphShow
             _usergraph = GetUserGraphUnfoInfo.FindXy(GetUserGraphUnfoInfo.Path);
             var x = _usergraph[0];  // array of x
             var y = _usergraph[1]; // array of y
-            //var ls = new LineSeries
-            //{
-            //    IndependentValueBinding = new Binding("Key"),
-            //    DependentValueBinding = new Binding("Value")
-            //};
+
             var a = new KeyValuePair<int, int>[x.Length - 1];
             for (var i = 0; i < x.Length - 1; i++)
                 a[i] = new KeyValuePair<int, int>(x[i], y[i]);
-            //ls.ItemsSource = a;
             UserChart.ItemsSource = a;
         }
 
@@ -77,28 +72,19 @@ namespace UserGraphShow
             
             var y = graph.Dots[0];  // array of x
             var x = graph.Dots[1]; // array of y
-            //var ls = new LineSeries
-            //{
-            //    IndependentValueBinding = new Binding("Key"),
-            //    DependentValueBinding = new Binding("Value")
-            //};
+
             var a = new KeyValuePair<float, float>[x.Count - 1];
             for (var i = 0; i < x.Count - 1; i++)
                 a[i] = new KeyValuePair<float, float>(x[i], y[i]);
-            //ls.ItemsSource = a;
             Chart.ItemsSource = a;
             Description.Text = graph.Description;
             Name.Text = graph.Name;
-            //MessageBox.Show($"{l}");
         }
 
         private void ShowInfo()
         {
-            //_listofgraphs = graphinfo.EconGraphArray(_usergraph);
             percent = (int)((double)graphinfo.K / (double)GetUserGraphUnfoInfo.Pointamount * 100);
             textBox.Text = $"Found {_listofgraphs.Count()} graphs, {percent}% match";
-            
-
         }
     }
 }

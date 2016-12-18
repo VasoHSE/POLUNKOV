@@ -11,8 +11,8 @@
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="75*"/>
             <ColumnDefinition Width="80*"/>
-            <ColumnDefinition Width="102*"/>
-            <ColumnDefinition Width="505*"/>
+            <ColumnDefinition Width="80*"/>
+            <ColumnDefinition Width="528*"/>
         </Grid.ColumnDefinitions>
 
         <Canvas Name="paintSurface" MouseDown="Canvas_MouseDown_1" MouseMove="Canvas_MouseMove_1" Grid.ColumnSpan="4" >
@@ -20,19 +20,6 @@
                 <SolidColorBrush Color="Black" Opacity="0" />
             </Canvas.Background>
         </Canvas>
-
-
-        <!--<Canvas  Name="paintSurface" MouseDown="Canvas_MouseDown_1" MouseMove="Canvas_MouseMove_1" Margin="0,0,0,0" Grid.Column="1" Grid.Row="1" Grid.ColumnSpan="2"   >
-            <Canvas.Background>
-                <SolidColorBrush Color="Black" Opacity="0" />
-            </Canvas.Background>
-        </Canvas>-->
-
-        <!--<InkCanvas  Margin="0,0,10,10" >
-            <InkCanvas.DefaultDrawingAttributes >
-                <DrawingAttributes x:Name="paintSurface" Width="40" Height="40" Color="BlueViolet" />
-            </InkCanvas.DefaultDrawingAttributes>
-        </InkCanvas>-->
         <Button x:Name="button1" Content="Clear" Margin="2,5,0,0"  VerticalAlignment="Top" Click="clearButton_Click" Height="22" Grid.Column="2"/>
         <Button x:Name="button" Content="OK" HorizontalAlignment="Left" Margin="3,5,0,0" VerticalAlignment="Top" Width="74" Click="button_Click_1" Height="22" Grid.Column="1"/>
     </Grid>

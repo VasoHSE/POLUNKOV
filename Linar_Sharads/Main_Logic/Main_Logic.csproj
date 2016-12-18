@@ -62,10 +62,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Comparison\ComparisonByKoef.cs" />
-    <Compile Include="Context.cs" />
     <Compile Include="DTO\Models\OutputModel.cs" />
-    <Compile Include="Entities\LineGraph.cs" />
-    <Compile Include="Entities\Result.cs" />
     <Compile Include="GraphProcessing\DrawByKoef.cs" />
     <Compile Include="DTO\DTO_Data\Dataset.cs" />
     <Compile Include="DTO\DTO_API\Dataset.cs" />
@@ -75,19 +72,6 @@
     <Compile Include="DTO\Models\DATAResult.cs" />
     <Compile Include="GraphProcessing\GetUserGraphUnfoInfo.cs" />
     <Compile Include="Comparison\IComparing.cs" />
-    <Compile Include="Migrations\201612151937358_Initial.cs" />
-    <Compile Include="Migrations\201612151937358_Initial.Designer.cs">
-      <DependentUpon>201612151937358_Initial.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201612152056172_ChangedReferences.cs" />
-    <Compile Include="Migrations\201612152056172_ChangedReferences.Designer.cs">
-      <DependentUpon>201612152056172_ChangedReferences.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201612152059515_ChangedValidations.cs" />
-    <Compile Include="Migrations\201612152059515_ChangedValidations.Designer.cs">
-      <DependentUpon>201612152059515_ChangedValidations.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Repository.cs" />
@@ -95,17 +79,6 @@
   <ItemGroup>
     <None Include="App.config" />
     <None Include="packages.config" />
-  </ItemGroup>
-  <ItemGroup>
-    <EmbeddedResource Include="Migrations\201612151937358_Initial.resx">
-      <DependentUpon>201612151937358_Initial.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201612152056172_ChangedReferences.resx">
-      <DependentUpon>201612152056172_ChangedReferences.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201612152059515_ChangedValidations.resx">
-      <DependentUpon>201612152059515_ChangedValidations.cs</DependentUpon>
-    </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\DB_Logic\DB_Logic.csproj">

@@ -4,6 +4,7 @@ using System.Data.Entity.ModelConfiguration.Conventions;
 using System.Drawing;
 using System.Linq;
 using System.Security.Cryptography.X509Certificates;
+using System.Threading.Tasks;
 using DB_Logic;
 using Main_Logic.DTO.Models;
 
@@ -138,7 +139,7 @@ namespace Main_Logic
             {
                 listOfKoefsForDrawing.Add(new List<float>());
                 listOfKoefsForDrawing.Add(new List<float>());
-                
+               
                 foreach (var innerItem in item)
                 {
                     kekl = innerItem;
@@ -147,15 +148,15 @@ namespace Main_Logic
                 }
 
                 return new OutputModel
-                {
+                {                
                     Dots = listOfKoefsForDrawing,
                     Description = kekl.Description,
                     Name = kekl.Name
 
                 };
             }
-            throw  new ArgumentException();
-           
+            return null;
+
         }
 
 

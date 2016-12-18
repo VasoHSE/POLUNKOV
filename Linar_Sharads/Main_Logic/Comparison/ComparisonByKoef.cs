@@ -16,24 +16,18 @@ namespace Main_Logic
 
         public IEnumerable<DATAResult> Compare(List<float> listOfKoefs)
         {
-            try
-            {
-
-            
 
             var positive = listOfKoefs.Count(t => t >= 0);
             var negative = listOfKoefs.Count(t => t < 0);
 
-            var c = new Context();
+            var c = new UnitOfWork("local");
 
-            var selected =
-                c.LineGraph.Where(
-                    t =>
-                        t.Positives == positive&&
-                        t.Negatives == negative).ToList().ToList();
+                var selected =
+                    c.LineGraphs.GetAll().Where(
+                        t =>
+                            t.Positives == positive &&
+                            t.Negatives == negative).ToList().ToList();
 
-            if (selected == null)
-                throw new ArgumentException("There is nothing similar");
 
             var ListOfKoefFromDB = new List<float>();
             var listOfLists = new List<List<float>>();
@@ -92,12 +86,8 @@ namespace Main_Logic
 
 
             return selectedObjects;
-            }
-            catch (Exception)
-            {
-
-                throw new ArgumentException("No match");
-            }
+            
+           
 
         }
     }

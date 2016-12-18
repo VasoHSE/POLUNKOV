@@ -26,7 +26,7 @@ namespace Main_Logic
                                 Description = serializedObject.dataset.description,
                                 Name = serializedObject.dataset.name
                             });
-                if (dataResult.Count()>=200)
+                if (dataResult.Count()>=100)
                 {
                     yield return dataResult.ToList();
                 }

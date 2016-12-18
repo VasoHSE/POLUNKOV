@@ -52,12 +52,10 @@ namespace UserGraphShow
         private void button_Click_1(object sender, RoutedEventArgs e)
         {
             
-
                 try
                 {
                     SaveTo(GetUserGraphUnfoInfo.Path);
                     var kek = new Paint_Show_Find();
-                    // var kek2=new KoefGraphOutput();//+arrayXY
                     kek.ShowDialog();
                 }
                 catch (Exception ex)
@@ -65,29 +63,12 @@ namespace UserGraphShow
                     MessageBox.Show(ex.Message, ":(", MessageBoxButton.OKCancel, MessageBoxImage.Error);
 
                 }
-
-                //var pnlClient = this.Content as FrameworkElement;
-                //if (pnlClient == null) return;
-               
-           
+  
         }
 
         public void SaveTo(string f)
         {
-            //        RenderTargetBitmap rtb = new RenderTargetBitmap((int)paintSurface.RenderSize.Width,
-            //(int)paintSurface.RenderSize.Height, 96d, 96d, System.Windows.Media.PixelFormats.Default);
-            //        rtb.Render(paintSurface);
-
-            //        var crop = new CroppedBitmap(rtb, new Int32Rect(50, 50, 1000, 1000));
-
-            //        BitmapEncoder pngEncoder = new PngBitmapEncoder();
-            //        pngEncoder.Frames.Add(BitmapFrame.Create(crop));
-
-            //        using (var fs = System.IO.File.OpenWrite(f))
-            //        {
-            //            pngEncoder.Save(fs);
-            //        }
-
+           
 
             var b = VisualTreeHelper.GetDescendantBounds(paintSurface);
             var r = new RenderTargetBitmap((int)b.Width, (int)b.Height, 96, 96, PixelFormats.Default);
