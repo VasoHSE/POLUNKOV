@@ -13,6 +13,8 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
 using Main_Logic;
+using Main_Logic.GraphProcessing;
+
 namespace UserGraphShow
 {
     /// <summary>
@@ -43,7 +45,7 @@ namespace UserGraphShow
                 Y2 = e.GetPosition(this).Y
             };
             _currentPoint = e.GetPosition(this);
-            paintSurface.Children.Add(line);
+            PaintSurface.Children.Add(line);
         }
 
         private void button_Click_1(object sender, RoutedEventArgs e)
@@ -82,9 +84,9 @@ namespace UserGraphShow
             //        }
 
 
-            var b = VisualTreeHelper.GetDescendantBounds(paintSurface);
+            var b = VisualTreeHelper.GetDescendantBounds(PaintSurface);
             var r = new RenderTargetBitmap((int)b.Width, (int)b.Height, 96, 96, PixelFormats.Default);
-            r.Render(paintSurface);
+            r.Render(PaintSurface);
             var e = new PngBitmapEncoder();
             e.Frames.Add(BitmapFrame.Create(r));
             var s = new FileStream(f, FileMode.OpenOrCreate, FileAccess.Write);
@@ -94,7 +96,7 @@ namespace UserGraphShow
 
         private void clearButton_Click(object sender, RoutedEventArgs routedEventArgs)
         {
-            paintSurface.Children.Clear();
+            PaintSurface.Children.Clear();
         }
     }
 }

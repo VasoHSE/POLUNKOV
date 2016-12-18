@@ -10,6 +10,6 @@ namespace Main_Logic.DTO.DTO_Data
    public class ResponseOnData
     {
         [JsonProperty("dataset")]
-        public Dataset dataset { get; set; }
+        public Dataset Dataset { get; set; }
     }
 }
