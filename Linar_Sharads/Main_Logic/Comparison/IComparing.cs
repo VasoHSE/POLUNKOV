@@ -9,5 +9,6 @@ namespace DB_Logic
     interface IComparing<T>
     {
         IEnumerable<T> Compare(List<float> listOfKoefs);
+        int K { get;  }
     }
 }

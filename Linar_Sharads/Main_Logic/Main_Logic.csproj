@@ -63,6 +63,7 @@
   <ItemGroup>
     <Compile Include="Comparison\ComparisonByKoef.cs" />
     <Compile Include="Context.cs" />
+    <Compile Include="DTO\Models\OutputModel.cs" />
     <Compile Include="Entities\LineGraph.cs" />
     <Compile Include="Entities\Result.cs" />
     <Compile Include="GraphProcessing\DrawByKoef.cs" />

@@ -21,7 +21,8 @@
     <Grid>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="11*"/>
-            <ColumnDefinition Width="342*"/>
+            <ColumnDefinition Width="287*"/>
+            <ColumnDefinition Width="56*"/>
             <ColumnDefinition Width="739*"/>
         </Grid.ColumnDefinitions>
         <Grid.RowDefinitions>
@@ -29,7 +30,11 @@
             <RowDefinition Height="43*"/>
             <RowDefinition Height="161*"/>
         </Grid.RowDefinitions>
-        <DVC:Chart  Margin="0,-41,-110,0" Grid.Row="0" Grid.Column="2" >
+        <DVC:Chart  Margin="0,-41,-110,0" Grid.Row="0" Grid.Column="3" >
+            <DVC:Chart.Axes >
+                <DVC:LinearAxis Orientation="Y"   Visibility="Hidden"/>
+                <DVC:LinearAxis Orientation="X"   Visibility="Hidden"/>
+            </DVC:Chart.Axes>
             <DVC:LineSeries 
                         Name="Chart"
                          IndependentValueBinding="{Binding Path=Key}"  DependentValueBinding="{Binding Path=Value}"
@@ -37,7 +42,7 @@
                         IndependentValuePath="X" 
                         DataPointStyle="{DynamicResource LineDataPointStyle1}" Margin="2,0,0,0"/>
         </DVC:Chart>
-        <DVC:Chart Margin="0,0,-110,-22" Grid.Column="2" Grid.Row="1" Grid.RowSpan="2" >
+        <DVC:Chart Margin="0,0,-110,-22" Grid.Column="3" Grid.Row="1" Grid.RowSpan="2" >
             <DVC:Chart.Axes >
 
                 <DVC:LinearAxis Orientation="Y" Minimum="-510" Maximum="10"  Visibility="Hidden"/>
@@ -50,14 +55,16 @@
         		IndependentValuePath="X" 
         		DataPointStyle="{DynamicResource LineDataPointStyle1}" Margin="2,0,0,0"/>
         </DVC:Chart>
-        <DataGrid x:Name="dataGrid" Grid.Column="1" HorizontalAlignment="Left" Margin="10,173,0,0" Width="322"/>
-        <Button x:Name="button" Background="White" Click="button_Click" Margin="31,24,0,0" Grid.Column="1" HorizontalAlignment="Left" Width="42" Height="40" VerticalAlignment="Top">
+        <Button x:Name="button" Background="White" Click="button_Click" Margin="3.5,20,0,0" Grid.Column="2" HorizontalAlignment="Left" Width="42" Height="40" VerticalAlignment="Top">
             <Image  Source="Resourses/refresh.png" />
         </Button>
-        <Button x:Name="button2" Background="White" Click="button2_Click" Margin="84,24,0,0" Grid.Column="1" HorizontalAlignment="Left" Width="42" Height="40" VerticalAlignment="Top">
+        <Button x:Name="button2" Background="White" Click="button2_Click" Margin="9,24,0,0" Grid.Column="1" HorizontalAlignment="Left" Width="42" Height="40" VerticalAlignment="Top">
             <Image  Source="Resourses/brush.png" />
         </Button>
-        <Label x:Name="label" Content="Description" Grid.Column="1" HorizontalAlignment="Left" Margin="21,70,0,0" VerticalAlignment="Top" Height="49" Width="188" FontSize="33.333"/>
-        <Button x:Name="button1" Grid.ColumnSpan="2" Content="Button" Grid.Column="1" HorizontalAlignment="Left" Margin="287,-71,0,0" VerticalAlignment="Top" Width="74"/>
+        <Label x:Name="label" Content="Description" Grid.Column="1" HorizontalAlignment="Left" Margin="10,233,0,0" VerticalAlignment="Top" Height="50" Width="188" FontSize="15"/>
+        <TextBox x:Name="textBox" FontSize="16" Grid.Column="1" HorizontalAlignment="Left" Height="70" Margin="72,24,0,0" TextWrapping="Wrap" Text="TextBox" VerticalAlignment="Top" Width="183"/>
+        <TextBox x:Name="Description"  TextWrapping="Wrap"  Text="Label" Grid.Column="1" HorizontalAlignment="Left" Margin="10,283,0,0" VerticalAlignment="Top" RenderTransformOrigin="0.513,0.5" Height="182" Width="267" />
+        <Label x:Name="label_Copy" Content="Name" Grid.Column="1" HorizontalAlignment="Left" Margin="10,99,0,0" VerticalAlignment="Top" Height="50" Width="188" FontSize="15"/>
+        <TextBox x:Name="Name" TextWrapping="Wrap"  Text="Label" Grid.Column="1" Margin="9,149,11,0" VerticalAlignment="Top" RenderTransformOrigin="0.513,0.5" Height="84" FontStretch="Normal"/>
     </Grid>
 </Window>

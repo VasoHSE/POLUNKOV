@@ -11,6 +11,9 @@ namespace Main_Logic
 {
     class ComparisonByKoef : IComparing<DATAResult>
     {
+        public int K { get; set; }
+
+       
         public IEnumerable<DATAResult> Compare(List<float> listOfKoefs)
         {
             var positive = listOfKoefs.Count(t => t >= 0);
@@ -58,7 +61,8 @@ namespace Main_Logic
             suitable1 = suitable1.OrderByDescending(pair => pair.Value).ToDictionary(pair => pair.Key, pair => pair.Value);
 
             var selectedObjects = new List<DATAResult>();
-
+          //  guidForMaxDate = d.FirstOrDefault(x => x.Value == d.Values.Max()).
+            K = suitable1.Values.Max();
             var kek = suitable1.GroupBy(i => i.Value).First();
 
 
@@ -74,13 +78,9 @@ namespace Main_Logic
 
             foreach (var item in kek)
             {
-                
-                    
                         selectedObjects.Add(new DATAResult { Name = selected[item.Key].Name, Description = selected[item.Key].Describtion, Link = selected[item.Key].WebQuery });
                         if (selectedObjects.Count == 10)
                             break;
-                    
-               
             }
 
 

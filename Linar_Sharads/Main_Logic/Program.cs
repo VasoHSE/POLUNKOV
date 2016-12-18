@@ -65,7 +65,7 @@ namespace Main_Logic
                     }
                     var splittedList = new List<List<List<float>>>();
 
-                    repo.Split(listOfValues, listOfValues.Count / 5, ref splittedList);
+                    repo.Split(listOfValues, listOfValues.Count / (GetUserGraphUnfoInfo.Pointamount-1), ref splittedList);
 
                     var listOfKoef = new List<float>();
 

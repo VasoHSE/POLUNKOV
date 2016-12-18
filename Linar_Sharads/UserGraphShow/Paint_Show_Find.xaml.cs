@@ -1,8 +1,12 @@
 ﻿using System.Collections.Generic;
+using System.Linq;
 using System.Windows;
 using System.Windows.Data;
-using  Main_Logic;
+using Main_Logic;
+using System.Threading;
 using System.Windows.Controls.DataVisualization.Charting;
+using Main_Logic.DTO.Models;
+
 namespace UserGraphShow
 {
     /// <summary>
@@ -10,19 +14,27 @@ namespace UserGraphShow
     /// </summary>
     public partial class Paint_Show_Find : Window
     {
-
-        private List<int[]> _b;
+        private double percent; 
+        private List<int[]> _usergraph;
+        private IEnumerable<DATAResult> _listofgraphs;
+        private GetUserGraphUnfoInfo graphinfo;
+        
         public Paint_Show_Find()
         {
-            InitializeComponent();
-            ShowGraph();
-            FindGraph(_b);
+           InitializeComponent();
+           ShowGraph();
+            graphinfo = new GetUserGraphUnfoInfo();
+            _listofgraphs = graphinfo.EconGraphArray(_usergraph);
+           
+            ShowInfo();
+            //MessageBox.Show($"{l}");
+            FindGraph();
         }
        
 
-        private void button_Click(object sender, RoutedEventArgs e)
+        private  void button_Click(object sender, RoutedEventArgs e)
         {
-            FindGraph(_b);
+            FindGraph();
         }
 
         private void button2_Click(object sender, RoutedEventArgs e)
@@ -32,9 +44,9 @@ namespace UserGraphShow
 
         private  void  ShowGraph()
         {
-            _b = GetUserGraphUnfoInfo.FindXy(GetUserGraphUnfoInfo.Path);
-            var x = _b[0];  // array of x
-            var y = _b[1]; // array of y
+            _usergraph = GetUserGraphUnfoInfo.FindXy(GetUserGraphUnfoInfo.Path);
+            var x = _usergraph[0];  // array of x
+            var y = _usergraph[1]; // array of y
             //var ls = new LineSeries
             //{
             //    IndependentValueBinding = new Binding("Key"),
@@ -47,11 +59,12 @@ namespace UserGraphShow
             UserChart.ItemsSource = a;
         }
 
-        private void FindGraph(List<int[]> b)
+        private void FindGraph()
         {
-             var _list = new GetUserGraphUnfoInfo().EconGraphArray(b);
-            var y = _list[0];  // array of x
-            var x = _list[1]; // array of y
+           var graph = new GetUserGraphUnfoInfo().RandomGraph(_listofgraphs);
+            
+            var y = graph.Dots[0];  // array of x
+            var x = graph.Dots[1]; // array of y
             //var ls = new LineSeries
             //{
             //    IndependentValueBinding = new Binding("Key"),
@@ -62,6 +75,18 @@ namespace UserGraphShow
                 a[i] = new KeyValuePair<float, float>(x[i], y[i]);
             //ls.ItemsSource = a;
             Chart.ItemsSource = a;
+            Description.Text = graph.Description;
+            Name.Text = graph.Name;
+            //MessageBox.Show($"{l}");
+        }
+
+        private void ShowInfo()
+        {
+            //_listofgraphs = graphinfo.EconGraphArray(_usergraph);
+            percent = (int)((double)graphinfo.K / (double)GetUserGraphUnfoInfo.Pointamount * 100);
+            textBox.Text = $"Found {_listofgraphs.Count()} graphs, {percent}% match";
+            
+
         }
     }
 }

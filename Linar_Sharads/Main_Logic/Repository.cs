@@ -61,7 +61,7 @@ namespace Main_Logic
 
         public void Split<T>(List<T> array, int size, ref List<List<T>> splitedLIst)
         {
-            for (var i = 0; i < 6; i++)
+            for (var i = 0; i < GetUserGraphUnfoInfo.Pointamount; i++)
             {
                 splitedLIst.Add(array.Skip(i * size).Take(size).ToList());
             }
