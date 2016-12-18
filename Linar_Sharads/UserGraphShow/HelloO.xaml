@@ -5,8 +5,9 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:UserGraphShow"
         mc:Ignorable="d"
-        Title="HelloO" Height="200" Width="300" MinHeight="200" MinWidth="200"
-        Icon="Resourses/logo.jpg">
+        WindowStartupLocation="CenterScreen" 
+        Title="Linar sharades" Height="300" Width="400" MinHeight="200" MinWidth="200"
+        Icon="Resourses/logo.jpg" >
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="65*"/>

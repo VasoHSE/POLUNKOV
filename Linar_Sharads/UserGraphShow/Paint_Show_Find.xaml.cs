@@ -19,11 +19,11 @@ namespace UserGraphShow
 
         public Paint_Show_Find()
         {
-            try
-            {
+            //try
+            //{
 
 
-                InitializeComponent();
+           InitializeComponent();
 
            ShowGraph();
             graphinfo = new GetUserGraphUnfoInfo();
@@ -32,12 +32,13 @@ namespace UserGraphShow
             ShowInfo();
             //MessageBox.Show($"{l}");
             FindGraph();
-        }
-            catch (Exception e)
-            {
+        //}
+        //    catch (Exception e)
+        //    {
 
-                MessageBox.Show(e.Message);
-            }
+        //        MessageBox.Show(e.Message);
+        //        this.Close();
+        //    }
 }
        
 
@@ -74,7 +75,7 @@ namespace UserGraphShow
             for (var i = 0; i < x.Count - 1; i++)
                 a[i] = new KeyValuePair<float, float>(x[i], y[i]);
             Chart.ItemsSource = a;
-            Description.Text = graph.Description;
+            Description.Text = graph.Description.Replace("<p>","").Replace("</p>","");
             Name.Text = graph.Name;
         }
 

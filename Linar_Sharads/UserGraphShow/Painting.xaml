@@ -6,7 +6,7 @@
         xmlns:local="clr-namespace:UserGraphShow"
         mc:Ignorable="d"
       ResizeMode="NoResize"
-        Title="Painting"  MaxWidth="1000" MaxHeight="500" 
+        Title="Linar sharades"  MaxWidth="1000" MaxHeight="500" 
         Icon="Resourses/logo.jpg">
     <Grid >
         <Grid.ColumnDefinitions>
