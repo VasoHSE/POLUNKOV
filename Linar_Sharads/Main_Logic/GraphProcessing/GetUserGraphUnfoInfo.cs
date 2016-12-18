@@ -1,10 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Data.Entity.ModelConfiguration.Conventions;
 using System.Drawing;
 using System.Linq;
-using System.Security.Cryptography.X509Certificates;
-using System.Threading.Tasks;
 using DB_Logic;
 using Main_Logic.DTO.Models;
 
@@ -14,25 +11,18 @@ namespace Main_Logic
     {
         private int _k;
         public int K => _k;
-        private IEnumerable<DATAResult> _list;
-        //lets say the step is 1/25 length    
+        private IEnumerable<DATAResult> _list; 
         public const int Pointamount = 6;
            
         public static string Path => "../../../Main_Logic/image.png";
 
-        private string _path;
-        public GetUserGraphUnfoInfo()
-        {
-            this._path = "../../../Main_Logic/image.png";
-        }
 
         public static int[][] ImageConvert(string path) //Convert bitmap to double array with 1 and 0
         {
             var bitmap = new Bitmap(path);
             var imgArray = new int[bitmap.Width][];
             for (var i = 0; i < imgArray.Length; i++)
-                imgArray[i] = new int[bitmap.Height];
-            var black = Color.Black.ToArgb();
+                imgArray[i] = new int[bitmap.Height];           
             for (var i = 0; i < bitmap.Width; ++i)
                 for (var j = 0; j < bitmap.Height; ++j)
                 {

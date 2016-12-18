@@ -2,10 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Windows;
-using System.Windows.Data;
 using Main_Logic;
-using System.Threading;
-using System.Windows.Controls.DataVisualization.Charting;
 using Main_Logic.DTO.Models;
 
 namespace UserGraphShow
@@ -22,11 +19,11 @@ namespace UserGraphShow
 
         public Paint_Show_Find()
         {
-            //try
-            //{
+            try
+            {
 
-           
-           InitializeComponent();
+
+                InitializeComponent();
 
            ShowGraph();
             graphinfo = new GetUserGraphUnfoInfo();
@@ -35,13 +32,13 @@ namespace UserGraphShow
             ShowInfo();
             //MessageBox.Show($"{l}");
             FindGraph();
-            //}
-            //catch (Exception e)
-            //{
-
-            //    MessageBox.Show(e.Message);
-            //}
         }
+            catch (Exception e)
+            {
+
+                MessageBox.Show(e.Message);
+            }
+}
        
 
         private  void button_Click(object sender, RoutedEventArgs e)

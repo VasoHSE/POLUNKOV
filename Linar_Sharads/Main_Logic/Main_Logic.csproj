@@ -45,6 +45,7 @@
       <HintPath>..\packages\Newtonsoft.Json.9.0.1\lib\net45\Newtonsoft.Json.dll</HintPath>
       <Private>True</Private>
     </Reference>
+    <Reference Include="PresentationFramework" />
     <Reference Include="System" />
     <Reference Include="System.ComponentModel.DataAnnotations" />
     <Reference Include="System.Core" />
@@ -63,7 +64,6 @@
   <ItemGroup>
     <Compile Include="Comparison\ComparisonByKoef.cs" />
     <Compile Include="DTO\Models\OutputModel.cs" />
-    <Compile Include="GraphProcessing\DrawByKoef.cs" />
     <Compile Include="DTO\DTO_Data\Dataset.cs" />
     <Compile Include="DTO\DTO_API\Dataset.cs" />
     <Compile Include="DTO\DTO_API\ResponseOnApi.cs" />

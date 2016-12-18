@@ -13,7 +13,6 @@ namespace Main_Logic
     {
         public int K { get; set; }
 
-
         public IEnumerable<DATAResult> Compare(List<float> listOfKoefs)
         {
 
@@ -28,6 +27,8 @@ namespace Main_Logic
                             t.Positives == positive &&
                             t.Negatives == negative).ToList().ToList();
 
+            if (selected.Count == 0)
+                throw new ArgumentException("There is noting similar");
 
             var ListOfKoefFromDB = new List<float>();
             var listOfLists = new List<List<float>>();
@@ -60,30 +61,18 @@ namespace Main_Logic
             suitable1 = suitable1.OrderByDescending(pair => pair.Value).ToDictionary(pair => pair.Key, pair => pair.Value);
 
             var selectedObjects = new List<DATAResult>();
-          //  guidForMaxDate = d.FirstOrDefault(x => x.Value == d.Values.Max()).
             K = suitable1.Values.Max();
+            if (K == 0)
+                throw new ArgumentException("There is nothing similar :(");
             var kek = suitable1.GroupBy(i => i.Value).First();
 
 
-
-
-
-            //foreach (var item in suitable1)
-            //{
-            //   selectedObjects.Add(new DATAResult { Name = selected[item.Key].Name, Description = selected[item.Key].Describtion, Link = selected[item.Key].WebQuery });
-            //   if (selectedObjects.Count==10)
-            //        break;
-            //}
-
             foreach (var item in kek)
             {
-                        selectedObjects.Add(new DATAResult { Name = selected[item.Key].Name, Description = selected[item.Key].Describtion, Link = selected[item.Key].WebQuery });
-                        if (selectedObjects.Count == 10)
-                            break;
+                selectedObjects.Add(new DATAResult { Name = selected[item.Key].Name, Description = selected[item.Key].Describtion, Link = selected[item.Key].WebQuery });
+                if (selectedObjects.Count == 10)
+                    break;
             }
-
-
-
 
             return selectedObjects;
             

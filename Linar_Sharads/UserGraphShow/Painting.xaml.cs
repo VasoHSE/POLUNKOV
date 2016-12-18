@@ -39,7 +39,7 @@ namespace UserGraphShow
             if (e.LeftButton != MouseButtonState.Pressed) return;
             var line = new Line
             {
-                Stroke = System.Windows.SystemColors.WindowFrameBrush,
+                Stroke = SystemColors.WindowFrameBrush,
                 X1 = _currentPoint.X,
                 Y1 = _currentPoint.Y,
                 X2 = e.GetPosition(this).X,

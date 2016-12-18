@@ -72,6 +72,14 @@
       <DependentUpon>App.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
+    <Page Include="HelloO.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Info.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Painting.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -82,6 +90,12 @@
     </Page>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="HelloO.xaml.cs">
+      <DependentUpon>HelloO.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Info.xaml.cs">
+      <DependentUpon>Info.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Painting.xaml.cs">
       <DependentUpon>Painting.xaml</DependentUpon>
     </Compile>
@@ -126,6 +140,12 @@
   </ItemGroup>
   <ItemGroup>
     <Resource Include="Resourses\refresh.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resourses\Intro.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resourses\logo.jpg" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

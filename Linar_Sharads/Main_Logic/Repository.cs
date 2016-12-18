@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 using System.Net.Http;
 using Main_Logic.DTO.DTO_API;
@@ -12,52 +13,28 @@ namespace Main_Logic
     {
         public IEnumerable<List<DATAResult>> MakeQuery(string url)
         {
+         
             using (var client = new HttpClient())
             {
                 var result = client.GetStringAsync(url).Result;
-                var serializedObject = JsonConvert.DeserializeObject<ResponseOnData>(result);
-                var dataResult =
-                    serializedObject.dataset.data.Select(
-                        t =>
-                            new DATAResult
-                            {
-                                Value = float.Parse(t[1].ToString()),
-                                Link = url,
-                                Description = serializedObject.dataset.description,
-                                Name = serializedObject.dataset.name
-                            });
-                if (dataResult.Count()>=100)
-                {
-                    yield return dataResult.ToList();
-                }
-                
+                    var serializedObject = JsonConvert.DeserializeObject<ResponseOnData>(result);
+                    var dataResult =
+                        serializedObject.dataset.data.Select(
+                            t =>
+                                new DATAResult
+                                {
+                                    Value = float.Parse(t[1].ToString()),
+                                    Link = url,
+                                    Description = serializedObject.dataset.description,
+                                    Name = serializedObject.dataset.name
+                                });
+                    if (dataResult.Count() >= 100)
+                        yield return dataResult.ToList();
             }
+
+            
         }
 
-
-        //public IEnumerable<APIResults> GetApisList()
-        //{
-        //    using (var client = new HttpClient())
-        //    {
-        //        for (var i = 1; i < 18; i++)
-        //        {
-        //            var result = client.GetStringAsync(
-        //                $"https://www.quandl.com/api/v3/datasets.json?database_code=BOE&per_page=100&sort_by=id&page={i}&api_key=14RrJdQgDvzP-AcbYa1H")
-        //                .Result;
-        //            var deserializedObject = JsonConvert.DeserializeObject<ResponseOnApi>(result);
-        //            var apiResults = deserializedObject.datasets.Select(t => new APIResults
-        //            {
-        //                Url =
-        //                    $"https://www.quandl.com/api/v3/datasets/{t.database_code}/{t.dataset_code}.json?api_key=14RrJdQgDvzP-AcbYa1H"
-        //            });
-        //            foreach (var item in apiResults)
-        //            {
-        //                yield return item;
-        //            }
-        //        }
-
-        //    }
-        //}
 
         public void Split<T>(List<T> array, int size, ref List<List<T>> splitedLIst)
         {
@@ -66,32 +43,6 @@ namespace Main_Logic
                 splitedLIst.Add(array.Skip(i * size).Take(size).ToList());
             }
         }
-
-        //public IEnumerable<List<float>> GetKoefs()
-        //{
-        //    float t = 0;
-        //    foreach (var forOneUrl in GetApisList())
-        //    {
-        //        foreach (var varpair in MakeQuery(forOneUrl.Url))
-        //        {
-        //            var listOfValues = new List<List<float>>();
-        //            foreach (var onePair in varpair)
-        //            {
-        //                listOfValues.Add(new List<float> { t, onePair.Value });
-        //                t += (float)0.0054;
-        //            }
-        //            var splittedList = new List<List<List<float>>>();
-
-        //            Split(listOfValues, listOfValues.Count / (GetUserGraphUnfoInfo.Pointamount-1), ref splittedList);
-
-        //            var listOfKoef = new List<float>();
-
-        //            splittedList.ForEach(n => listOfKoef.Add(DataProceeding(n)));
-        //            yield return listOfKoef;
-        //        }
-        //    }
-
-        //}
 
         public float DataProceeding(List<List<float>> x)
         {

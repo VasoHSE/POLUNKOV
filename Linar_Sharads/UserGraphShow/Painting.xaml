@@ -6,16 +6,19 @@
         xmlns:local="clr-namespace:UserGraphShow"
         mc:Ignorable="d"
       ResizeMode="NoResize"
-        Title="Painting"  MaxWidth="1000" MaxHeight="500" >
+        Title="Painting"  MaxWidth="1000" MaxHeight="500" 
+        Icon="Resourses/logo.jpg">
     <Grid >
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="75*"/>
             <ColumnDefinition Width="80*"/>
-            <ColumnDefinition Width="80*"/>
-            <ColumnDefinition Width="528*"/>
+            <ColumnDefinition Width="79*"/>
+            <ColumnDefinition Width="138*"/>
+            <ColumnDefinition Width="223*"/>
+            <ColumnDefinition Width="167*"/>
         </Grid.ColumnDefinitions>
 
-        <Canvas Name="paintSurface" MouseDown="Canvas_MouseDown_1" MouseMove="Canvas_MouseMove_1" Grid.ColumnSpan="4" >
+        <Canvas Name="paintSurface" MouseDown="Canvas_MouseDown_1" MouseMove="Canvas_MouseMove_1" Grid.ColumnSpan="6" >
             <Canvas.Background>
                 <SolidColorBrush Color="Black" Opacity="0" />
             </Canvas.Background>

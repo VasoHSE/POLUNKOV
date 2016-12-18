@@ -8,7 +8,8 @@
         xmlns:local="clr-namespace:UserGraphShow"
         mc:Ignorable="d"
         
-        Title="Paint_Show_Find" Height="1000" Width="1100" WindowState="Maximized">
+        Title="Paint_Show_Find" Height="1000" Width="1100" MinHeight="500" MinWidth="800" WindowState="Maximized"
+        Icon="Resourses/logo.jpg">
     <Window.Resources>
 
         <Style x:Key="LineDataPointStyle1" TargetType="{x:Type DVC:LineDataPoint}">
@@ -29,14 +30,13 @@
         </Grid.ColumnDefinitions>
         <Grid.RowDefinitions>
             <RowDefinition Height="101*"/>
-            <RowDefinition Height="22*"/>
-            <RowDefinition Height="26*"/>
-            <RowDefinition Height="118*"/>
-            <RowDefinition Height="217*"/>
+            <RowDefinition Height="68*"/>
+            <RowDefinition Height="220*"/>
+            <RowDefinition Height="95*"/>
             <RowDefinition Height="102*"/>
             <RowDefinition Height="383*"/>
         </Grid.RowDefinitions>
-        <DVC:Chart  Margin="0,-41,-110,0" Grid.Row="0" Grid.Column="5" Grid.RowSpan="5" >
+        <DVC:Chart  Margin="0,-41,-110,0" Grid.Row="0" Grid.Column="5" Grid.RowSpan="4" >
             <DVC:Chart.Axes >
                 <DVC:LinearAxis Orientation="Y"   Visibility="Hidden"/>
                 <DVC:LinearAxis Orientation="X"   Visibility="Hidden"/>
@@ -48,7 +48,7 @@
                         IndependentValuePath="X" 
                         DataPointStyle="{DynamicResource LineDataPointStyle1}" Margin="2,0,0,0"/>
         </DVC:Chart>
-        <DVC:Chart Margin="0,0,-110,-22" Grid.Column="5" Grid.Row="5" Grid.RowSpan="2" >
+        <DVC:Chart Margin="0,0,-110,-22" Grid.Column="5" Grid.Row="4" Grid.RowSpan="2" >
             <DVC:Chart.Axes >
 
                 <DVC:LinearAxis Orientation="Y" Minimum="-510" Maximum="10"  Visibility="Hidden"/>
@@ -67,10 +67,10 @@
         <Button x:Name="button2" Background="White" Click="button2_Click" Margin="9,24,6,0" Grid.Column="1" Height="40" VerticalAlignment="Top">
             <Image  Source="Resourses/brush.png" />
         </Button>
-        <Label x:Name="label" Content="Description" Grid.Column="1" Margin="10,179,8,0" VerticalAlignment="Top" Height="28" FontSize="15" Grid.ColumnSpan="2" Grid.Row="4"/>
-        <TextBox x:Name="textBox" FontSize="16" Grid.Column="2" Height="70" Margin="15,24,8,0" TextWrapping="Wrap" Text="TextBox" VerticalAlignment="Top"/>
-        <TextBox x:Name="Description"  TextWrapping="Wrap"  Text="Label" Grid.Column="1" Margin="10,10,11,91" RenderTransformOrigin="0.513,0.5" Grid.ColumnSpan="3" Grid.Row="5" Grid.RowSpan="2" />
-        <Label x:Name="label_Copy" Content="Name" Grid.Column="1" Margin="10,99,10,0" FontSize="15" Grid.ColumnSpan="2" Grid.RowSpan="3"/>
-        <TextBox x:Name="Name" TextWrapping="Wrap"  Text="Label" Grid.Column="1" Margin="9,14,11,0" RenderTransformOrigin="0.513,0.5" FontStretch="Normal" Grid.ColumnSpan="3" Grid.Row="3"/>
+        <Label x:Name="label" Content="Description" Grid.Column="1" Margin="10,0,8,10" FontSize="15" Grid.ColumnSpan="2" Grid.Row="3" Height="28" VerticalAlignment="Bottom"/>
+        <TextBox x:Name="textBox" FontSize="16" Grid.Column="2" IsEnabled="False" Height="70" Margin="15,24,8,0" TextWrapping="Wrap" Text="TextBox" VerticalAlignment="Top"/>
+        <TextBox x:Name="Description"  TextWrapping="Wrap" IsEnabled="False" Text="Label" Grid.Column="1" Margin="10,10,11,91" RenderTransformOrigin="0.513,0.5" Grid.ColumnSpan="3" Grid.Row="4" Grid.RowSpan="2" />
+        <Label x:Name="label_Copy" Content="Name" Grid.Column="1" Margin="10,10,11,0" FontSize="15" Grid.ColumnSpan="3" Grid.Row="1"/>
+        <TextBox x:Name="Name" TextWrapping="Wrap"  Text="Label" IsEnabled="False" Grid.Column="1" Margin="9,14,11,4" RenderTransformOrigin="0.513,0.5" FontStretch="Normal" Grid.ColumnSpan="3" Grid.Row="2"/>
     </Grid>
 </Window>

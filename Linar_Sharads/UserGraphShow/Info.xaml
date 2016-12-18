@@ -1,0 +1,24 @@
+﻿<Window x:Class="UserGraphShow.Info"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:UserGraphShow"
+        mc:Ignorable="d"
+        Title="Info" Height="300" Width="300" MaxWidth="300" MinWidth="300" MaxHeight="300" MinHeight="300"
+        Icon="Resourses/logo.jpg">
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="78*"/>
+            <ColumnDefinition Width="137*"/>
+            <ColumnDefinition Width="77*"/>
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="224*"/>
+            <RowDefinition Height="45*"/>
+        </Grid.RowDefinitions>
+        <TextBlock x:Name="InfoMessage" HorizontalAlignment="Left" Height="194" Margin="29,30,0,0" TextWrapping="Wrap" Text="TextBlock" VerticalAlignment="Top" Width="221" Grid.ColumnSpan="3"/>
+        <Button x:Name="Back" Content="Back" Margin="10,14,10,10" Grid.Row="1" Grid.Column="1" Click="Back_Click"/>
+
+    </Grid>
+</Window>

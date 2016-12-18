@@ -1,61 +1,43 @@
-﻿
-using Main_Logic;
-using Main_Logic.DTO.DTO_API;
+﻿using Main_Logic.DTO.DTO_API;
 using Main_Logic.DTO.Models;
-
 using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
-using System.Data.Entity;
-using System.Data.Entity.Migrations;
 using System.Linq;
 using System.Net.Http;
 using System.Text;
 using DB_Logic;
 using DB_Logic.DB_Entities;
+using System.Windows;
 
 namespace Main_Logic
 {
     internal class Program
     {
+        private Repository repo = new Repository();
         private static void Main()
-        {
-            //Test
-            //using (var context = new Context())
-            //{
-            //    context.Database.Delete();
-            //    context.Database.CreateIfNotExists();
-
-            //    context.SaveChanges();
-            //}
-            //var kek = GetUserGraphUnfoInfo.KoefArray("../../../Main_Logic/image.jpeg");
-            //System.Console.ReadLine();
-            //Repository repository = new Repository();
-
-            //int i = 0;
-            //foreach (var item in repository.GetKoefs())
-            //{
-            //    Console.WriteLine(i++);
-            //}
-            //Console.ReadKey();
-            //repo.GetKoefs();
-
+        {            
             var c = new UnitOfWork("local");
-            Program p = new Program();
-            p.Seed(c);
+            var p = new Program();
+            try
+            {
+                p.Seed(c);
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
         }
-
-        Repository repo = new Repository();
+        
         public void Seed(UnitOfWork context)
         {
-
             foreach (var forOneUrl in GetApisList())
             {
                 float t = 0;
 
                 foreach (var varpair in repo.MakeQuery(forOneUrl.Url))
                 {
-                    DATAResult dres = new DATAResult();
+                    var dres = new DATAResult();
                     var listOfValues = new List<List<float>>();
                     foreach (var onePair in varpair)
                     {
@@ -82,13 +64,11 @@ namespace Main_Logic
                     context.Save();
                 }
             }
-
-
         }
 
         private static string ConvertStringArrayToString(List<float> array)
         {
-            StringBuilder builder = new StringBuilder();
+            var builder = new StringBuilder();
             foreach (var value in array)
             {
                 builder.Append(value);
@@ -113,9 +93,7 @@ namespace Main_Logic
                             $"https://www.quandl.com/api/v3/datasets/{t.database_code}/{t.dataset_code}.json?api_key=62VyK84zgtv9d4asbz7y"
                     });
                     foreach (var item in apiResults)
-                    {
                         yield return item;
-                    }
                 }
 
             }
