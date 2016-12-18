@@ -17,6 +17,7 @@
         <Style x:Key="LineDataPointStyle1" TargetType="{x:Type DVC:LineDataPoint}">
             <Setter Property="Width" Value="0"/>
             <Setter Property="Height" Value="0"/>
+            
         </Style>
 
     </Window.Resources>
@@ -29,10 +30,11 @@
             <ColumnDefinition Width="491*"/>
             <ColumnDefinition/>
         </Grid.ColumnDefinitions>
-        <DVC:Chart Grid.ColumnSpan="5" Margin="-34,-39,-112,-40">
+        <DVC:Chart Grid.ColumnSpan="5" Margin="-34,-39,-112,-40" Name="ChartName">
             <DVC:Chart.Axes >
-                <DVC:LinearAxis Orientation="Y" Minimum="-302"  Visibility="Hidden"/>
-                <DVC:LinearAxis Orientation="X" Maximum="509"    Visibility="Hidden"/>
+                
+                <DVC:LinearAxis Orientation="Y" Minimum="-510" Maximum="10"  Visibility="Hidden"/>
+                <DVC:LinearAxis Orientation="X" Maximum="1000" Minimum="50"   Visibility="Hidden"/>
             </DVC:Chart.Axes>
             <DVC:LineSeries 
                         Name="Chart"

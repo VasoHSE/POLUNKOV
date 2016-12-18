@@ -58,9 +58,9 @@ namespace UserGraphShow
                 
             }
 
-            var pnlClient = this.Content as FrameworkElement;
-            if (pnlClient == null) return;
-            var kek = new GraphOutput(pnlClient.ActualWidth,pnlClient.ActualHeight);
+            //var pnlClient = this.Content as FrameworkElement;
+            //if (pnlClient == null) return;
+            var kek = new Paint_Show_Find();
            // var kek2=new KoefGraphOutput();//+arrayXY
             kek.ShowDialog();
         }

@@ -1,0 +1,63 @@
+﻿<Window x:Class="UserGraphShow.Paint_Show_Find"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:DVC="clr-namespace:System.Windows.Controls.DataVisualization.Charting;assembly=System.Windows.Controls.DataVisualization.Toolkit"
+        
+        xmlns:local="clr-namespace:UserGraphShow"
+        mc:Ignorable="d"
+        
+        Title="Paint_Show_Find" Height="1000" Width="1100" WindowState="Maximized">
+    <Window.Resources>
+
+        <Style x:Key="LineDataPointStyle1" TargetType="{x:Type DVC:LineDataPoint}">
+            <Setter Property="Width" Value="0"/>
+            <Setter Property="Height" Value="0"/>
+        </Style>
+
+    </Window.Resources>
+
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="11*"/>
+            <ColumnDefinition Width="342*"/>
+            <ColumnDefinition Width="739*"/>
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="204*"/>
+            <RowDefinition Height="43*"/>
+            <RowDefinition Height="161*"/>
+        </Grid.RowDefinitions>
+        <DVC:Chart  Margin="0,-41,-110,0" Grid.Row="0" Grid.Column="2" >
+            <DVC:LineSeries 
+                        Name="Chart"
+                         IndependentValueBinding="{Binding Path=Key}"  DependentValueBinding="{Binding Path=Value}"
+                        DependentValuePath="Y"
+                        IndependentValuePath="X" 
+                        DataPointStyle="{DynamicResource LineDataPointStyle1}" Margin="2,0,0,0"/>
+        </DVC:Chart>
+        <DVC:Chart Margin="0,0,-110,-22" Grid.Column="2" Grid.Row="1" Grid.RowSpan="2" >
+            <DVC:Chart.Axes >
+
+                <DVC:LinearAxis Orientation="Y" Minimum="-510" Maximum="10"  Visibility="Hidden"/>
+                <DVC:LinearAxis Orientation="X" Maximum="1000" Minimum="50"   Visibility="Hidden"/>
+            </DVC:Chart.Axes>
+            <DVC:LineSeries 
+        		x:Name="UserChart"
+        		IndependentValueBinding="{Binding Key}"  DependentValueBinding="{Binding Value}"
+        		DependentValuePath="Y"
+        		IndependentValuePath="X" 
+        		DataPointStyle="{DynamicResource LineDataPointStyle1}" Margin="2,0,0,0"/>
+        </DVC:Chart>
+        <DataGrid x:Name="dataGrid" Grid.Column="1" HorizontalAlignment="Left" Margin="10,173,0,0" Width="322"/>
+        <Button x:Name="button" Background="White" Click="button_Click" Margin="31,24,0,0" Grid.Column="1" HorizontalAlignment="Left" Width="42" Height="40" VerticalAlignment="Top">
+            <Image  Source="Resourses/refresh.png" />
+        </Button>
+        <Button x:Name="button2" Background="White" Click="button2_Click" Margin="84,24,0,0" Grid.Column="1" HorizontalAlignment="Left" Width="42" Height="40" VerticalAlignment="Top">
+            <Image  Source="Resourses/brush.png" />
+        </Button>
+        <Label x:Name="label" Content="Description" Grid.Column="1" HorizontalAlignment="Left" Margin="21,70,0,0" VerticalAlignment="Top" Height="49" Width="188" FontSize="33.333"/>
+        <Button x:Name="button1" Grid.ColumnSpan="2" Content="Button" Grid.Column="1" HorizontalAlignment="Left" Margin="287,-71,0,0" VerticalAlignment="Top" Width="74"/>
+    </Grid>
+</Window>
