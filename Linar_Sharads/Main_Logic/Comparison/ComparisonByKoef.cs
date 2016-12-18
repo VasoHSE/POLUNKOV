@@ -1,25 +1,22 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Data.Entity.Core.Metadata.Edm;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using DB_Logic;
 using Main_Logic.DTO.Models;
 
-namespace Main_Logic
+namespace Main_Logic.Comparison
 {
-    class ComparisonByKoef : IComparing<DATAResult>
+    class ComparisonByKoef : IComparing<DataResult>
     {
-        public IEnumerable<DATAResult> Compare(List<float> listOfKoefs)
+        public IEnumerable<DataResult> Compare(List<float> listOfKoefs)
         {
             var positive = listOfKoefs.Count(t => t >= 0);
             var negative = listOfKoefs.Count(t => t < 0);
 
-            var c = new Context();
+            var c = new UnitOfWork("local");
 
             var selected =
-                c.LineGraph.Where(
+                c.LineGraphs.GetAll().Where(
                     t =>
                         t.Positives == positive&&
                         t.Negatives == negative).ToList().ToList();
@@ -27,37 +24,28 @@ namespace Main_Logic
             if (selected == null)
                 throw new ArgumentException("There is nothing similar");
 
-            var ListOfKoefFromDB = new List<float>();
-            var listOfLists = new List<List<float>>();
+            var listOfKoefFromDb = new List<float>();
             var key = 0;
             var suitable1 = new Dictionary<int,int>();
             var suitable = new Dictionary<int,List<float>>();
             foreach (var item in selected)
             {
                 foreach (var innerItem in item.Koeficients.Split(new [] {';'},StringSplitOptions.RemoveEmptyEntries))
-                {
-                    ListOfKoefFromDB.Add(float.Parse(innerItem));  
-                }
-                listOfLists.Add(ListOfKoefFromDB);
-                suitable.Add(key++,new List<float>(ListOfKoefFromDB));
-                ListOfKoefFromDB.Clear();
+                    listOfKoefFromDb.Add(float.Parse(innerItem));  
+                suitable.Add(key++,new List<float>(listOfKoefFromDb));
+                listOfKoefFromDb.Clear();
             }
 
             
             foreach (var oneListOfKoef in suitable)
             {
-                var temp = 0;
-                for (var i = 0; i < listOfKoefs.Count; i++)
-                {
-                    if (Math.Abs(listOfKoefs[i] - oneListOfKoef.Value[i]) <= 1)
-                        temp += 1;                    
-                }
+                var temp = listOfKoefs.Where((t, i) => Math.Abs(t - oneListOfKoef.Value[i]) <= 1).Count();
                 suitable1.Add(oneListOfKoef.Key,temp);
             }
 
             suitable1 = suitable1.OrderByDescending(pair => pair.Value).ToDictionary(pair => pair.Key, pair => pair.Value);
 
-            var selectedObjects = new List<DATAResult>();
+            var selectedObjects = new List<DataResult>();
 
             var kek = suitable1.GroupBy(i => i.Value).First();
 
@@ -76,7 +64,7 @@ namespace Main_Logic
             {
                 
                     
-                        selectedObjects.Add(new DATAResult { Name = selected[item.Key].Name, Description = selected[item.Key].Describtion, Link = selected[item.Key].WebQuery });
+                        selectedObjects.Add(new DataResult { Name = selected[item.Key].Name, Description = selected[item.Key].Describtion, Link = selected[item.Key].WebQuery });
                         if (selectedObjects.Count == 10)
                             break;
                     

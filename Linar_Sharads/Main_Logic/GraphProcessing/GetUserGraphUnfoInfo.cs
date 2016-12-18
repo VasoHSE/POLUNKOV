@@ -1,13 +1,11 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Data.Entity.ModelConfiguration.Conventions;
 using System.Drawing;
 using System.Linq;
-using System.Security.Cryptography.X509Certificates;
-using DB_Logic;
+using Main_Logic.Comparison;
 using Main_Logic.DTO.Models;
 
-namespace Main_Logic
+namespace Main_Logic.GraphProcessing
 {
     public class GetUserGraphUnfoInfo
     {
@@ -20,7 +18,7 @@ namespace Main_Logic
         //private  string _path => "../../../Main_Logic/image.jpeg";
 
 
-        private string _path;
+        private readonly string _path;
         public GetUserGraphUnfoInfo()
         {
             this._path = "../../../Main_Logic/image.png";
@@ -175,7 +173,7 @@ namespace Main_Logic
         public List<List<float>> DotaForDrawing(List<List<int>> kek)
         {
             var splittedList = new List<List<List<int>>>();
-            Repository repository = new Repository();
+            var repository = new Repository();
             repository.Split(kek, kek.Count / Pointamount - 1, ref splittedList);
             var listOfKoefs = new List<float>();
 
@@ -184,7 +182,7 @@ namespace Main_Logic
                 listOfKoefs.Add(repository.DataProceeding(item.Select(t => t.Select(n => (float)n).ToList()).ToList()));
             }
 
-            IComparing<DATAResult> compare = new ComparisonByKoef();
+            IComparing<DataResult> compare = new ComparisonByKoef();
 
             var result = compare.Compare(listOfKoefs);
           

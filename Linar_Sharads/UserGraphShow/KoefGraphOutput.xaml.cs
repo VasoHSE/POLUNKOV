@@ -13,6 +13,8 @@ using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
 using Main_Logic;
 using System.Windows.Controls.DataVisualization.Charting;
+using Main_Logic.GraphProcessing;
+
 namespace UserGraphShow
 {
     /// <summary>
@@ -20,7 +22,7 @@ namespace UserGraphShow
     /// </summary>
     public partial class KoefGraphOutput : Window
     {
-        private List<List<float>> _list;
+        private readonly List<List<float>> _list;
 
         public KoefGraphOutput(List<int[]> b)
         {

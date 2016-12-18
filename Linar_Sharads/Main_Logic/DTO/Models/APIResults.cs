@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Main_Logic.DTO.Models
 {
-    public class APIResults
+    public class ApiResults
     {
         public string Url { get; set; }
     }

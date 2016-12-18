@@ -1,8 +1,8 @@
-﻿using System;
-using System.Data.Entity;
-using DB_Logic.Context;
+﻿using DB_Logic.Context;
 using DB_Logic.DB_Entities;
 using DB_Logic.DB_Repository;
+using System;
+using System.Data.Entity;
 
 namespace DB_Logic
 {
@@ -32,7 +32,7 @@ namespace DB_Logic
             _context.SaveChanges();
         }
 
-        private bool _disposed = false;
+        private bool _disposed;
 
         public void Dispose()
         {

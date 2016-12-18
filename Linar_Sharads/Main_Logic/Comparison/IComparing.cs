@@ -1,12 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.Collections.Generic;
 
-namespace DB_Logic
+namespace Main_Logic.Comparison
 {
-    interface IComparing<T>
+    internal interface IComparing<out T>
     {
         IEnumerable<T> Compare(List<float> listOfKoefs);
     }

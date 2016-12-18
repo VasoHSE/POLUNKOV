@@ -8,9 +8,9 @@
       
         Title="Painting" Height="325.123" Width="534.975" MaxWidth="1000" MaxHeight="500" >
     <Grid Margin="0,0,2,-20">
-        <Canvas  Name="paintSurface" MouseDown="Canvas_MouseDown_1" MouseMove="Canvas_MouseMove_1" Margin="0,0,10,10"   >
+        <Canvas  Name="PaintSurface" MouseDown="Canvas_MouseDown_1" MouseMove="Canvas_MouseMove_1" Margin="0,0,10,10"   >
             <Canvas.Background>
-                <SolidColorBrush Color="Black" Opacity="0" />
+                <SolidColorBrush Color="#282CCF" Opacity="0" />
             </Canvas.Background>
         </Canvas>
         <!--<InkCanvas  Margin="0,0,10,10" >
@@ -18,7 +18,7 @@
                 <DrawingAttributes x:Name="paintSurface" Width="40" Height="40" Color="BlueViolet" />
             </InkCanvas.DefaultDrawingAttributes>
         </InkCanvas>-->
-        <Button x:Name="button1" Content="Clear" Margin="156,5,0,0"  VerticalAlignment="Top" Width="74" Click="clearButton_Click"/>
-        <Button x:Name="button" Content="OK" HorizontalAlignment="Left" Margin="78,5,0,0" VerticalAlignment="Top" Width="74" Click="button_Click_1"/>
+        <Button x:Name="Button1" Content="Clear" Margin="156,5,0,0"  VerticalAlignment="Top" Width="74" Click="clearButton_Click"/>
+        <Button x:Name="Button" Content="OK" HorizontalAlignment="Left" Margin="78,5,0,0" VerticalAlignment="Top" Width="74" Click="button_Click_1"/>
     </Grid>
 </Window>

@@ -4,6 +4,7 @@ using System.Windows;
 using System.Windows.Data;
 using Main_Logic;
 using System.Windows.Controls.DataVisualization.Charting;
+using Main_Logic.GraphProcessing;
 
 namespace UserGraphShow
 {
