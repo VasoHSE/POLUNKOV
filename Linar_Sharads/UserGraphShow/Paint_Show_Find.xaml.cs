@@ -76,7 +76,7 @@ namespace UserGraphShow
             //ls.ItemsSource = a;
             Chart.ItemsSource = a;
             Description.Text = graph.Description;
-            Name.Text = graph.Name;
+            Name1.Text = graph.Name;
             //MessageBox.Show($"{l}");
         }
 

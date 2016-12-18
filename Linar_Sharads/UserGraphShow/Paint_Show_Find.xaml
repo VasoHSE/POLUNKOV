@@ -65,6 +65,6 @@
         <TextBox x:Name="textBox" FontSize="16" Grid.Column="1" HorizontalAlignment="Left" Height="70" Margin="72,24,0,0" TextWrapping="Wrap" Text="TextBox" VerticalAlignment="Top" Width="183"/>
         <TextBox x:Name="Description"  TextWrapping="Wrap"  Text="Label" Grid.Column="1" HorizontalAlignment="Left" Margin="10,283,0,0" VerticalAlignment="Top" RenderTransformOrigin="0.513,0.5" Height="182" Width="267" />
         <Label x:Name="label_Copy" Content="Name" Grid.Column="1" HorizontalAlignment="Left" Margin="10,99,0,0" VerticalAlignment="Top" Height="50" Width="188" FontSize="15"/>
-        <TextBox x:Name="Name" TextWrapping="Wrap"  Text="Label" Grid.Column="1" Margin="9,149,11,0" VerticalAlignment="Top" RenderTransformOrigin="0.513,0.5" Height="84" FontStretch="Normal"/>
+        <TextBox x:Name="Name1" TextWrapping="Wrap"  Text="Label" Grid.Column="1" Margin="9,149,11,0" VerticalAlignment="Top" RenderTransformOrigin="0.513,0.5" Height="84" FontStretch="Normal"/>
     </Grid>
 </Window>
