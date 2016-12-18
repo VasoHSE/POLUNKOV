@@ -1,11 +1,16 @@
-﻿using Main_Logic.DTO.DTO_API;
+﻿
+using Main_Logic;
+using Main_Logic.DTO.DTO_API;
 using Main_Logic.DTO.Models;
+using Main_Logic.Entities;
 using Newtonsoft.Json;
+using System;
 using System.Collections.Generic;
+using System.Data.Entity;
+using System.Data.Entity.Migrations;
 using System.Linq;
 using System.Net.Http;
 using System.Text;
-using DB_Logic;
 
 namespace Main_Logic
 {
@@ -33,23 +38,24 @@ namespace Main_Logic
             //Console.ReadKey();
             //repo.GetKoefs();
 
-            var c = new UnitOfWork("local");
-
+            Context c = new Context();
+            c.Database.Delete();
+            c.Database.CreateIfNotExists();
             Program p = new Program();
             p.Seed(c);
         }
 
-        private readonly Repository _repo = new Repository();
-        public void Seed(UnitOfWork context)
+        Repository repo = new Repository();
+        public void Seed(Context context)
         {
 
             foreach (var forOneUrl in GetApisList())
             {
                 float t = 0;
 
-                foreach (var varpair in _repo.MakeQuery(forOneUrl.Url))
+                foreach (var varpair in repo.MakeQuery(forOneUrl.Url))
                 {
-                    DataResult dres = new DataResult();
+                    DATAResult dres = new DATAResult();
                     var listOfValues = new List<List<float>>();
                     foreach (var onePair in varpair)
                     {
@@ -59,21 +65,21 @@ namespace Main_Logic
                     }
                     var splittedList = new List<List<List<float>>>();
 
-                    _repo.Split(listOfValues, listOfValues.Count / 5, ref splittedList);
+                    repo.Split(listOfValues, listOfValues.Count / (GetUserGraphUnfoInfo.Pointamount-1), ref splittedList);
 
                     var listOfKoef = new List<float>();
 
-                    splittedList.ForEach(n => listOfKoef.Add(_repo.DataProceeding(n)));
-                    context.LineGraphs.Add(new DB_Logic.DB_Entities.LineGraph
+                    splittedList.ForEach(n => listOfKoef.Add(repo.DataProceeding(n)));
+                    context.LineGraph.Add(new LineGraph
                     {
                         Name = dres.Name,
                         Describtion = dres.Description,
                         WebQuery = dres.Link,
-                        Negatives = listOfKoef.Count(p => p < 0),
-                        Positives = listOfKoef.Count(n => n >= 0),
+                        Negatives = listOfKoef.Where(p => p < 0).Count(),
+                        Positives = listOfKoef.Where(n => n >= 0).Count(),
                         Koeficients = ConvertStringArrayToString(listOfKoef)
                     });
-                    context.Save();
+                    context.SaveChanges();
                 }
             }
 
@@ -91,7 +97,7 @@ namespace Main_Logic
             return builder.ToString();
         }
 
-        private IEnumerable<ApiResults> GetApisList()
+        private IEnumerable<APIResults> GetApisList()
         {
             using (var client = new HttpClient())
             {
@@ -101,10 +107,10 @@ namespace Main_Logic
                         $"https://www.quandl.com/api/v3/datasets.json?database_code=BOE&per_page=100&sort_by=id&page={i}&api_key=62VyK84zgtv9d4asbz7y")
                         .Result;
                     var deserializedObject = JsonConvert.DeserializeObject<ResponseOnApi>(result);
-                    var apiResults = deserializedObject.Datasets.Select(t => new ApiResults
+                    var apiResults = deserializedObject.datasets.Select(t => new APIResults
                     {
                         Url =
-                            $"https://www.quandl.com/api/v3/datasets/{t.DatabaseCode}/{t.DatasetCode}.json?api_key=62VyK84zgtv9d4asbz7y"
+                            $"https://www.quandl.com/api/v3/datasets/{t.database_code}/{t.dataset_code}.json?api_key=62VyK84zgtv9d4asbz7y"
                     });
                     foreach (var item in apiResults)
                     {

@@ -1,6 +1,10 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
 
-namespace Main_Logic.GraphProcessing
+namespace Main_Logic
 {
    public class DrawByKoef
     {
@@ -9,32 +13,32 @@ namespace Main_Logic.GraphProcessing
 
 
         
-        
+        List<double> _k;
         public DrawByKoef()
         {
            
-            var repository = new Repository();
+            Repository repository = new Repository();
             //_k = repository.GetKoefs(repository.MakeQuery(repository.GetApiString()));           
         }
 
 
-        public  List<double[]> Xykoef()
+        public  List<double[]> XYKOEF()
         {
             var points = GetUserGraphUnfoInfo.Pointamount;
-            var x = new double[points];
-            var y = new double[points];
-            x[0] = 0;
+            var X = new double[points];
+            var Y = new double[points];
+            X[0] = 0;
             var dx = 10;
-            for (int i = 0; i < x.Length; i++)
+            for (int i = 0; i < X.Length; i++)
             {
-                x[i] =-( x[0] + i * dx);
+                X[i] =-( X[0] + i * dx);
             }
-            y[0] = 0;
-            for (int i = 1; i < y.Length; i++)
+            Y[0] = 0;
+            for (int i = 1; i < Y.Length; i++)
             {
-                y[i] = y[i - 1] + (_k[i - 1] /** 10000*/) * dx;
+                Y[i] = Y[i - 1] + (_k[i - 1] /** 10000*/) * dx;
             }
-           return new List<double[]> { x, y };
+           return new List<double[]> { X, Y };
         }
 
 

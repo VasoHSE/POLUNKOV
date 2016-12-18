@@ -77,8 +77,8 @@ namespace Main_Logic
             var a = 0;
             var i1 = x1;
             var j1 = 0;
-            //try
-            //{
+            try
+            {
                 do // find Xi Yi arrays
                 {
                     if (imgArray[i1][j1] == 1)
@@ -91,11 +91,11 @@ namespace Main_Logic
                     }
                     j1++;
                 } while (i1 < xn+1);
-            //}
-            //catch
-            //{
-            //    throw new ArgumentException("Choose a continuous function");
-            //}
+            }
+            catch
+            {
+                throw new ArgumentException("Choose a continuous function");
+            }
 
             var kek = new List<int[]> { x, y };
 

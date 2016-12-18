@@ -13,7 +13,6 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
 using Main_Logic;
-using Main_Logic.GraphProcessing;
 
 namespace UserGraphShow
 {
@@ -26,7 +25,9 @@ namespace UserGraphShow
         {
             InitializeComponent();
         }
+
         private Point _currentPoint;
+
         private void Canvas_MouseDown_1(object sender, MouseButtonEventArgs e)
         {
             if (e.ButtonState == MouseButtonState.Pressed)
@@ -45,26 +46,30 @@ namespace UserGraphShow
                 Y2 = e.GetPosition(this).Y
             };
             _currentPoint = e.GetPosition(this);
-            PaintSurface.Children.Add(line);
+            paintSurface.Children.Add(line);
         }
 
         private void button_Click_1(object sender, RoutedEventArgs e)
         {
-            try
-            {
-                SaveTo(GetUserGraphUnfoInfo.Path);
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show(ex.Message, ":(", MessageBoxButton.OKCancel, MessageBoxImage.Error);
-                
-            }
+            
 
-            //var pnlClient = this.Content as FrameworkElement;
-            //if (pnlClient == null) return;
-            var kek = new Paint_Show_Find();
-           // var kek2=new KoefGraphOutput();//+arrayXY
-            kek.ShowDialog();
+                try
+                {
+                    SaveTo(GetUserGraphUnfoInfo.Path);
+                    var kek = new Paint_Show_Find();
+                    // var kek2=new KoefGraphOutput();//+arrayXY
+                    kek.ShowDialog();
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show(ex.Message, ":(", MessageBoxButton.OKCancel, MessageBoxImage.Error);
+
+                }
+
+                //var pnlClient = this.Content as FrameworkElement;
+                //if (pnlClient == null) return;
+               
+           
         }
 
         public void SaveTo(string f)
@@ -84,9 +89,9 @@ namespace UserGraphShow
             //        }
 
 
-            var b = VisualTreeHelper.GetDescendantBounds(PaintSurface);
+            var b = VisualTreeHelper.GetDescendantBounds(paintSurface);
             var r = new RenderTargetBitmap((int)b.Width, (int)b.Height, 96, 96, PixelFormats.Default);
-            r.Render(PaintSurface);
+            r.Render(paintSurface);
             var e = new PngBitmapEncoder();
             e.Frames.Add(BitmapFrame.Create(r));
             var s = new FileStream(f, FileMode.OpenOrCreate, FileAccess.Write);
@@ -96,7 +101,7 @@ namespace UserGraphShow
 
         private void clearButton_Click(object sender, RoutedEventArgs routedEventArgs)
         {
-            PaintSurface.Children.Clear();
+            paintSurface.Children.Clear();
         }
     }
 }

@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Main_Logic.DTO.Models
 {
-    public class DataResult
+    public class DATAResult
     {
         public string Link { get; set; }
         public string Description { get; set; }

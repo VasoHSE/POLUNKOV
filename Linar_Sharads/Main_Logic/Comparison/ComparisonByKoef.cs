@@ -13,9 +13,14 @@ namespace Main_Logic
     {
         public int K { get; set; }
 
-       
+
         public IEnumerable<DATAResult> Compare(List<float> listOfKoefs)
         {
+            try
+            {
+
+            
+
             var positive = listOfKoefs.Count(t => t >= 0);
             var negative = listOfKoefs.Count(t => t < 0);
 
@@ -87,6 +92,12 @@ namespace Main_Logic
 
 
             return selectedObjects;
+            }
+            catch (Exception)
+            {
+
+                throw new ArgumentException("No match");
+            }
 
         }
     }

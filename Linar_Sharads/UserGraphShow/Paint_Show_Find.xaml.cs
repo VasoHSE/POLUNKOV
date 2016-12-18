@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 using System.Windows;
 using System.Windows.Data;
@@ -14,14 +15,19 @@ namespace UserGraphShow
     /// </summary>
     public partial class Paint_Show_Find : Window
     {
-        private double percent; 
+        private double percent;
         private List<int[]> _usergraph;
         private IEnumerable<DATAResult> _listofgraphs;
         private GetUserGraphUnfoInfo graphinfo;
-        
+
         public Paint_Show_Find()
         {
+            try
+            {
+
+           
            InitializeComponent();
+
            ShowGraph();
             graphinfo = new GetUserGraphUnfoInfo();
             _listofgraphs = graphinfo.EconGraphArray(_usergraph);
@@ -29,6 +35,12 @@ namespace UserGraphShow
             ShowInfo();
             //MessageBox.Show($"{l}");
             FindGraph();
+            }
+            catch (Exception e)
+            {
+
+                MessageBox.Show(e.Message);
+            }
         }
        
 
@@ -76,7 +88,7 @@ namespace UserGraphShow
             //ls.ItemsSource = a;
             Chart.ItemsSource = a;
             Description.Text = graph.Description;
-            Name1.Text = graph.Name;
+            Name.Text = graph.Name;
             //MessageBox.Show($"{l}");
         }
 

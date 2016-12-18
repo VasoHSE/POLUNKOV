@@ -10,21 +10,21 @@ namespace Main_Logic
 {
     public class Repository
     {
-        public IEnumerable<List<DataResult>> MakeQuery(string url)
+        public IEnumerable<List<DATAResult>> MakeQuery(string url)
         {
             using (var client = new HttpClient())
             {
                 var result = client.GetStringAsync(url).Result;
                 var serializedObject = JsonConvert.DeserializeObject<ResponseOnData>(result);
                 var dataResult =
-                    serializedObject.Dataset.Data.Select(
+                    serializedObject.dataset.data.Select(
                         t =>
-                            new DataResult
+                            new DATAResult
                             {
                                 Value = float.Parse(t[1].ToString()),
                                 Link = url,
-                                Description = serializedObject.Dataset.Description,
-                                Name = serializedObject.Dataset.Name
+                                Description = serializedObject.dataset.description,
+                                Name = serializedObject.dataset.name
                             });
                 if (dataResult.Count()>=200)
                 {
