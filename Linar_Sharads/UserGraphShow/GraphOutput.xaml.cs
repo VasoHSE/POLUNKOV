@@ -13,14 +13,13 @@ namespace UserGraphShow
     /// </summary>
     public partial class GraphOutput
     {
-        public GraphOutput(double width,double height)
+        public GraphOutput()
         {
             InitializeComponent();
             //var pnlClient = this.Content as FrameworkElement;
-            ////pnlClient.Height = height;
-            ////pnlClient.Width = width;
-            //Chart.Width = width;
-            //Chart.Height = height;
+            //pnlClient.Height = height;
+            //pnlClient.Width = width;
+          
 
         }
 
